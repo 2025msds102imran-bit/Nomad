@@ -1,0 +1,11 @@
+export { default as HeroSection } from './HeroSection';
+export { default as AboutSection } from './AboutSection';
+export { default as ProblemSection } from './ProblemSection';
+export { default as HowItWorks } from './HowItWorks';
+export { default as KeyValues } from './KeyValues';
+export { default as PaymentsTrust } from './PaymentsTrust';
+export { default as ForCompanies } from './ForCompanies';
+export { default as ForRecruiters } from './ForRecruiters';
+export { default as WhyDifferent } from './WhyDifferent';
+export { default as TrustQuality } from './TrustQuality';
+export { default as FinalCTA } from './FinalCTA';
