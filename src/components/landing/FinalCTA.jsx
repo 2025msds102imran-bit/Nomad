@@ -1,75 +1,73 @@
 import React from "react";
-import { FaArrowRight } from "react-icons/fa6";
 
 const FinalCTA = () => {
   return (
-    <section className="w-full bg-linear-to-b from-white via-[#F9FAFB4D] to-white py-16 sm:py-20 px-4">
-      <div className="max-w-7xl mx-auto">
-        
-        <div className="text-center max-w-4xl mx-auto flex flex-col items-center">
+    <section className="w-full relative bg-linear-to-b from-white via-gray-50/30 to-white overflow-hidden py-14 px-4">
+      {/* Decorative elements */}
+      <div className="absolute size-[700px] left-1/4 top-0 bg-cyan-900/5 rounded-full blur-3xl" />
+      <div className="absolute size-[800px] left-[280px] top-[68px] bg-blue-400/5 rounded-full blur-3xl" />
+      <div className="absolute size-28 right-[120px] top-[30px] origin-top-left rotate-12 rounded-2xl border-4 border-slate-900/10 hidden lg:block" />
+      <div className="absolute size-32 left-[80px] bottom-0 bg-linear-to-br from-blue-400/10 to-transparent rounded-full hidden lg:block" />
 
-          <span className="px-4 py-2 rounded-full border border-[#0F172A33] bg-[#0F172A0D] text-sm font-medium mb-6 flex items-center gap-2">
-            🚀 Ready to Get Started?
-          </span>
+      <div className="relative max-w-[896px] mx-auto flex flex-col items-center gap-9">
+        {/* Badge */}
+        <div className="inline-flex items-center gap-3 px-5 py-3 bg-slate-900/5 rounded-full outline-[1.30px] outline-solid outline-slate-900/20">
+          <span className="text-xl leading-7">🚀</span>
+          <span className="text-slate-900 text-sm font-medium leading-5">Ready to Get Started?</span>
+        </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight mb-6">
-            Ready to Transform Your Recruitment?
-          </h1>
+        {/* Heading */}
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-slate-900 leading-tight md:leading-[82.80px] text-center">
+          Ready to Transform Your Recruitment?
+        </h2>
 
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mb-10">
-            Join companies and recruiters who are making smarter, fairer hiring
-            decisions. Get started in minutes.
-          </p>
+        {/* Description */}
+        <p className="text-lg sm:text-xl md:text-2xl text-gray-700 font-normal leading-relaxed md:leading-10 text-center max-w-[768px]">
+          Join companies and recruiters who are making smarter, fairer hiring decisions. Get started in minutes.
+        </p>
 
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-6 mb-10 text-sm sm:text-base">
-            
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 19.9913C0 8.95042 8.95042 0 19.9913 0C31.0322 0 39.9826 8.95042 39.9826 19.9913C39.9826 31.0322 31.0322 39.9826 19.9913 39.9826C8.95042 39.9826 0 31.0322 0 19.9913Z" fill="#DCFCE7"/>
-<path fillRule="evenodd" clipRule="evenodd" d="M19.9913 29.5872C22.5363 29.5872 24.9771 28.5762 26.7766 26.7766C28.5762 24.9771 29.5872 22.5363 29.5872 19.9913C29.5872 17.4464 28.5762 15.0056 26.7766 13.2061C24.9771 11.4065 22.5363 10.3955 19.9913 10.3955C17.4464 10.3955 15.0056 11.4065 13.2061 13.2061C11.4065 15.0056 10.3955 17.4464 10.3955 19.9913C10.3955 22.5363 11.4065 24.9771 13.2061 26.7766C15.0056 28.5762 17.4464 29.5872 19.9913 29.5872ZM24.4378 18.4404C24.6563 18.2142 24.7772 17.9112 24.7745 17.5967C24.7718 17.2822 24.6456 16.9814 24.4232 16.759C24.2008 16.5366 23.9 16.4104 23.5855 16.4077C23.271 16.405 22.968 16.5259 22.7418 16.7444L18.7919 20.6942L17.2409 19.1433C17.0147 18.9248 16.7117 18.8039 16.3972 18.8067C16.0827 18.8094 15.7819 18.9355 15.5595 19.1579C15.3371 19.3803 15.2109 19.6812 15.2082 19.9957C15.2055 20.3102 15.3264 20.6132 15.5449 20.8394L17.9438 23.2383C18.1688 23.4632 18.4738 23.5895 18.7919 23.5895C19.1099 23.5895 19.415 23.4632 19.6399 23.2383L24.4378 18.4404Z" fill="#00A63E"/>
-</svg>
-
-              </div>
-              <span>Free to Start</span>
+        {/* Trust badges */}
+        <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
+          <div className="flex items-center gap-2">
+            <div className="size-10 bg-green-100 rounded-full flex justify-center items-center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" clipRule="evenodd" d="M11.9948 21.5911C14.5397 21.5911 16.9805 20.5801 18.7801 18.7805C20.5796 16.981 21.5906 14.5402 21.5906 11.9953C21.5906 9.45028 20.5796 7.00954 18.7801 5.20997C16.9805 3.4104 14.5397 2.39941 11.9948 2.39941C9.44979 2.39941 7.00905 3.4104 5.20948 5.20997C3.40991 7.00954 2.39893 9.45028 2.39893 11.9953C2.39893 14.5402 3.40991 16.981 5.20948 18.7805C7.00905 20.5801 9.44979 21.5911 11.9948 21.5911ZM16.4412 10.4443C16.6597 10.2181 16.7806 9.91511 16.7779 9.60061C16.7752 9.28611 16.649 8.98527 16.4266 8.76287C16.2042 8.54048 15.9034 8.41433 15.5889 8.4116C15.2744 8.40887 14.9714 8.52977 14.7452 8.74826L10.7953 12.6982L9.24436 11.1472C9.01813 10.9287 8.71514 10.8078 8.40064 10.8106C8.08614 10.8133 7.7853 10.9394 7.56291 11.1618C7.34051 11.3842 7.21436 11.6851 7.21163 11.9996C7.2089 12.3141 7.3298 12.6171 7.54829 12.8433L9.94725 15.2422C10.1722 15.4671 10.4772 15.5934 10.7953 15.5934C11.1133 15.5934 11.4184 15.4671 11.6433 15.2422L16.4412 10.4443Z" fill="#00A63E"/>
+              </svg>
             </div>
-
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 19.9913C0 8.95042 8.95042 0 19.9913 0C31.0322 0 39.9826 8.95042 39.9826 19.9913C39.9826 31.0322 31.0322 39.9826 19.9913 39.9826C8.95042 39.9826 0 31.0322 0 19.9913Z" fill="#DBEAFE"/>
-<path d="M19.9912 22.9899V24.9891M13.9938 28.9873H25.9886C26.5188 28.9873 27.0273 28.7767 27.4022 28.4018C27.7771 28.0269 27.9877 27.5184 27.9877 26.9882V20.9908C27.9877 20.4606 27.7771 19.9521 27.4022 19.5772C27.0273 19.2023 26.5188 18.9917 25.9886 18.9917H13.9938C13.4636 18.9917 12.9551 19.2023 12.5802 19.5772C12.2053 19.9521 11.9946 20.4606 11.9946 20.9908V26.9882C11.9946 27.5184 12.2053 28.0269 12.5802 28.4018C12.9551 28.7767 13.4636 28.9873 13.9938 28.9873ZM23.9894 18.9917V14.9934C23.9894 13.933 23.5682 12.916 22.8184 12.1662C22.0685 11.4164 21.0516 10.9951 19.9912 10.9951C18.9308 10.9951 17.9138 11.4164 17.164 12.1662C16.4141 12.916 15.9929 13.933 15.9929 14.9934V18.9917H23.9894Z" stroke="#155DFC" strokeWidth="1.99913" strokeLinecap="round" strokeLinejoin="round"/>
-</svg>
-
-              </div>
-              <span>Secure Payments</span>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 19.9913C0 8.95042 8.95042 0 19.9913 0C31.0322 0 39.9826 8.95042 39.9826 19.9913C39.9826 31.0322 31.0322 39.9826 19.9913 39.9826C8.95042 39.9826 0 31.0322 0 19.9913Z" fill="#F3E8FF"/>
-<path d="M20.9907 17.9921V10.9951L11.9946 21.9904H18.9916V28.9873L27.9877 17.9921H20.9907Z" stroke="#9810FA" strokeWidth="1.99913" strokeLinecap="round" strokeLinejoin="round"/>
-</svg>
-
-              </div>
-              <span>Instant Setup</span>
-            </div>
-
+            <span className="text-gray-600 text-sm font-medium leading-5">Free to Start</span>
           </div>
 
-          <div className="flex flex-col sm:flex-row w-full sm:w-auto gap-4">
-            
-            <button className="w-full sm:w-auto bg-linear-to-r from-[#0F172A] to-[#334F90] text-white px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 flex justify-center items-center gap-2">
-              Get Started for Free <FaArrowRight />
-            </button>
-
-            <button className="w-full sm:w-auto bg-white border border-gray-300 px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
-              Learn More
-            </button>
-
+          <div className="flex items-center gap-2">
+            <div className="size-10 bg-blue-100 rounded-full flex justify-center items-center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.9946 14.9938V16.993M5.99718 20.9912H17.992C18.5222 20.9912 19.0307 20.7806 19.4056 20.4057C19.7805 20.0308 19.9911 19.5223 19.9911 18.9921V12.9947C19.9911 12.4645 19.7805 11.956 19.4056 11.5811C19.0307 11.2062 18.5222 10.9956 17.992 10.9956H5.99718C5.46698 10.9956 4.95849 11.2062 4.58358 11.5811C4.20867 11.956 3.99805 12.4645 3.99805 12.9947V18.9921C3.99805 19.5223 4.20867 20.0308 4.58358 20.4057C4.95849 20.7806 5.46698 20.9912 5.99718 20.9912ZM15.9928 10.9956V6.99729C15.9928 5.93688 15.5716 4.91991 14.8218 4.17009C14.072 3.42027 13.055 2.99902 11.9946 2.99902C10.9342 2.99902 9.9172 3.42027 9.16738 4.17009C8.41756 4.91991 7.99631 5.93688 7.99631 6.99729V10.9956H15.9928Z" stroke="#155DFC" strokeWidth="1.999" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <span className="text-gray-600 text-sm font-medium leading-5">Secure Payments</span>
           </div>
 
+          <div className="flex items-center gap-2">
+            <div className="size-10 bg-purple-100 rounded-full flex justify-center items-center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.9941 9.99599V2.99902L3.99805 13.9943H10.995V20.9912L19.9911 9.99599H12.9941Z" stroke="#9810FA" strokeWidth="1.999" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <span className="text-gray-600 text-sm font-medium leading-5">Instant Setup</span>
+          </div>
+        </div>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row items-center gap-4">
+          <button className="w-72 h-16 bg-linear-to-l from-slate-900 to-blue-900 rounded-2xl overflow-hidden flex items-center justify-center gap-2 hover:opacity-90 transition">
+            <span className="text-white text-base font-medium leading-6">Get Started for Free</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.1533 6.66016L17.4835 9.99036M17.4835 9.99036L14.1533 13.3206M17.4835 9.99036H2.49756" stroke="white" strokeWidth="1.665" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+
+          <button className="w-60 h-16 bg-white rounded-2xl outline-[1.30px] outline-solid outline-gray-200 flex items-center justify-center hover:bg-gray-50 transition">
+            <span className="text-slate-900 text-base font-medium leading-6">Schedule a Demo</span>
+          </button>
         </div>
       </div>
     </section>

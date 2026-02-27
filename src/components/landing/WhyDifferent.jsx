@@ -1,5 +1,17 @@
 import React from "react";
-import { Check, X } from "lucide-react";
+
+const XIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M9.9919 3.33008L3.33057 9.99141" stroke="#FB2C36" strokeWidth="1.11" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M3.33057 3.33008L9.9919 9.99141" stroke="#FB2C36" strokeWidth="1.11" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const CheckIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M11.1025 3.33008L4.99626 9.4363L2.2207 6.66075" stroke="white" strokeWidth="1.11" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
 
 const rows = [
   {
@@ -24,66 +36,77 @@ const rows = [
   },
   {
     feature: "Cost Efficiency",
-    traditional: "Standard 15–30% placement fees",
+    traditional: "Standard 15-30% placement fees",
     nomad: "Negotiate fees that work for your budget",
   },
 ];
 
 const WhyDifferent = () => {
   return (
-    <section className="w-full py-16 px-4 sm:py-20 sm:px-6 lg:px-8" style={{ background: 'linear-gradient(135deg, #F9FAFB 0%, #FFFFFF 50%, rgba(249, 250, 251, 0.5) 100%)' }}>
-      <div className="max-w-7xl mx-auto flex flex-col items-center">
-        <div className="text-center max-w-3xl">
-          <div className="inline-block px-4 py-2 rounded-full border border-gray-200 bg-white text-sm mb-4 sm:mb-6">
-            Comparison
+    <section className="w-full relative bg-white overflow-hidden py-14 px-4">
+      {/* Decorative blur */}
+      <div className="absolute size-96 right-[80px] top-[80px] bg-cyan-900/5 rounded-full blur-3xl" />
+
+      <div className="relative max-w-[1280px] mx-auto flex flex-col items-center">
+        {/* Header */}
+        <div className="flex flex-col items-center gap-3.5 max-w-[768px] text-center">
+          <div className="inline-flex justify-center items-center px-5 py-2.5 bg-cyan-900/10 rounded-full">
+            <span className="text-slate-900 text-sm font-medium leading-5">Comparison</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-slate-900">
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-slate-900 leading-tight md:leading-[79.20px]">
             Why Nomad is Different
           </h2>
-          <div className="w-20 h-1 mx-auto my-4 sm:my-6 rounded-full bg-linear-to-r from-[#0F172A] to-[#334F90]" />
-          <p className="text-base sm:text-lg text-slate-600">
-            We're not another recruitment agency. We're a marketplace built on
-            transparency, fairness, and mutual control.
+
+          <div className="w-24 h-2 rounded-full" style={{ background: 'linear-gradient(180deg, transparent 0%, #0F172A 50%, transparent 100%)' }} />
+
+          <p className="text-lg sm:text-xl text-gray-700 font-normal leading-8 max-w-[639px]">
+            We&apos;re not another recruitment agency. We&apos;re a marketplace built on transparency, fairness, and mutual control.
           </p>
         </div>
 
-        <div className="w-full max-w-[900px] mt-10 sm:mt-14 rounded-[20px] border border-gray-200 overflow-hidden bg-white shadow-sm">
+        {/* Comparison table */}
+        <div className="w-full max-w-[960px] mt-12 rounded-[20px] shadow-[0px_20.8px_41.7px_-10px_rgba(0,0,0,0.25)] outline-[1.08px] outline-solid outline-gray-100 overflow-hidden bg-white">
 
-          {/* Header Row */}
-          <div className="hidden md:grid grid-cols-3">
-            <div className="px-6 py-5 font-semibold text-slate-900 text-sm">
-              Feature
+          {/* Table header */}
+          <div className="hidden md:grid grid-cols-3" style={{ background: 'linear-gradient(to right, #E5E7EB, rgba(22,78,99,0.1), #E5E7EB)' }}>
+            <div className="px-7 pt-7 pb-5 bg-linear-to-br from-white to-gray-50">
+              <span className="text-slate-900 text-sm font-medium leading-6">Feature</span>
             </div>
-            <div className="px-6 py-5 font-medium text-slate-500 text-sm border-l border-gray-200">
-              Traditional Agencies
+            <div className="px-7 pt-7 pb-5 bg-linear-to-br from-white to-gray-50">
+              <span className="text-gray-500 text-sm font-medium leading-6">Traditional Agencies</span>
             </div>
-            <div className="px-6 py-5 font-semibold text-white text-sm bg-linear-to-br from-[#0F172A] to-[#334F90] rounded-tr-[19px]">
-              Nomad Recruitment
+            <div className="px-7 pt-7 pb-5 bg-linear-to-l from-slate-900 to-blue-900 rounded-tr-xl">
+              <span className="text-white text-sm font-medium leading-6">Nomad Recruitment</span>
             </div>
           </div>
 
-          {/* Data Rows */}
+          {/* Data rows */}
           {rows.map((row, i) => (
             <div
               key={i}
-              className="grid grid-cols-1 md:grid-cols-3 border-t border-gray-200"
+              className="grid grid-cols-1 md:grid-cols-3"
+              style={{ background: 'linear-gradient(to right, #F3F4F6, #E5E7EB, #F3F4F6)' }}
             >
-              <div className="px-6 py-6 font-semibold text-slate-900 text-sm">
-                {row.feature}
+              {/* Feature name */}
+              <div className="px-7 py-6 bg-white">
+                <span className="text-gray-900 text-sm font-medium leading-5">{row.feature}</span>
               </div>
 
-              <div className="px-6 py-6 flex items-start md:items-center gap-3 text-slate-500 text-sm border-t md:border-t-0 md:border-l border-gray-200">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-red-50 shrink-0">
-                  <X className="h-3.5 w-3.5 text-red-400" />
-                </span>
-                <span>{row.traditional}</span>
+              {/* Traditional */}
+              <div className="px-7 py-7 bg-white flex items-start gap-3.5">
+                <div className="size-6 shrink-0 bg-red-50 rounded-full flex justify-center items-center">
+                  <XIcon />
+                </div>
+                <span className="text-gray-600 text-sm font-normal leading-5">{row.traditional}</span>
               </div>
 
-              <div className="px-6 py-6 flex items-start md:items-center gap-3 text-sm border-t md:border-t-0 md:border-l border-gray-200 bg-[#F8FAFC]">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-linear-to-br from-[#0F172A] to-[#334F90] shrink-0">
-                  <Check className="h-3.5 w-3.5 text-white" />
-                </span>
-                <span className="font-semibold text-slate-900">{row.nomad}</span>
+              {/* Nomad */}
+              <div className="px-7 py-7 bg-linear-to-br from-white to-blue-50/20 flex items-start gap-3.5">
+                <div className="size-6 shrink-0 bg-linear-to-l from-slate-900 to-blue-900 rounded-xl flex justify-center items-center">
+                  <CheckIcon />
+                </div>
+                <span className="text-gray-900 text-sm font-medium leading-5">{row.nomad}</span>
               </div>
             </div>
           ))}

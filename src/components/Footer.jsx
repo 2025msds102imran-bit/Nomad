@@ -2,88 +2,85 @@ import React from "react";
 import logo from "../assets/logo.png";
 
 const Footer = () => {
-    return (
-        <section className="w-full bg-linear-to-r from-[#0F172A] via-[#2A4870] to-[#0F172A] py-12 sm:py-16 px-4">
-            <div className="max-w-7xl mx-auto">
+  return (
+    <footer className="w-full relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #0F172A 0%, #164E63 50%, #0F172A 100%)' }}>
+      {/* Background layers */}
+      <div className="absolute size-[500px] right-[-60px] top-0 bg-blue-400/10 rounded-full blur-3xl" />
+      <div className="absolute size-[600px] left-0 top-[-20px] bg-blue-500/10 rounded-full blur-3xl" />
+      <div className="absolute inset-0 bg-linear-to-l from-slate-900 to-blue-900" />
 
-                <div className="text-center max-w-3xl mx-auto flex flex-col items-center">
-
-                    <div className="flex items-center gap-3 mb-6">
-                        <img
-                            className="w-10 h-10 sm:w-12 sm:h-12 shadow-lg shadow-cyan-500/50"
-                            src={logo}
-                            alt="Nomad Recruitment Logo"
-                        />
-                        <span className="text-xl sm:text-2xl font-semibold text-white">
-                            Nomad Recruitment
-                        </span>
-                    </div>
-
-                    <p className="text-sm sm:text-base text-white/80 mb-8 px-4 sm:px-0">
-                        The transparent recruitment marketplace where both sides decide the deal.
-                    </p>
-                </div>
-
-                <div className="flex flex-wrap justify-center gap-x-6 gap-y-4 text-white/60 text-sm sm:text-base text-center">
-                    <a href="">How It Works</a>
-                    <a href="">Pricing</a>
-                    <a href="">About Us</a>
-                    <a href="">For Companies</a>
-                    <a href="">For Recruiters</a>
-                    <a href="">FAQs</a>
-                    <a href="">Privacy Policy</a>
-                    <a href="">Terms</a>
-                    <a href="">Compliance</a>
-                </div>
-
-                <div className="flex justify-center flex-wrap gap-4 sm:gap-6 py-12 border-y border-white/20 mt-10">
-                    <div className="w-12 h-12 flex items-center justify-center bg-white/10 rounded-xl hover:bg-white/20 transition">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <mask id="path-1-inside-1_48_1852" fill="white">
-                                <path d="M0 14C0 6.26802 6.26801 0 14 0H33.9994C41.7314 0 47.9994 6.26801 47.9994 14V33.9994C47.9994 41.7314 41.7314 47.9994 33.9994 47.9994H14C6.26802 47.9994 0 41.7314 0 33.9994V14Z" />
-                            </mask>
-                            <path d="M0 14C0 6.26802 6.26801 0 14 0H33.9994C41.7314 0 47.9994 6.26801 47.9994 14V33.9994C47.9994 41.7314 41.7314 47.9994 33.9994 47.9994H14C6.26802 47.9994 0 41.7314 0 33.9994V14Z" fill="white" fillOpacity="0.1" />
-                            <path d="M14 0V1.29564H33.9994V0V-1.29564H14V0ZM47.9994 14H46.7038V33.9994H47.9994H49.295V14H47.9994ZM33.9994 47.9994V46.7038H14V47.9994V49.295H33.9994V47.9994ZM0 33.9994H1.29564V14H0H-1.29564V33.9994H0ZM14 47.9994V46.7038C6.98358 46.7038 1.29564 41.0158 1.29564 33.9994H0H-1.29564C-1.29564 42.447 5.55246 49.295 14 49.295V47.9994ZM47.9994 33.9994H46.7038C46.7038 41.0158 41.0158 46.7038 33.9994 46.7038V47.9994V49.295C42.447 49.295 49.295 42.4469 49.295 33.9994H47.9994ZM33.9994 0V1.29564C41.0158 1.29564 46.7038 6.98358 46.7038 14H47.9994H49.295C49.295 5.55245 42.4469 -1.29564 33.9994 -1.29564V0ZM14 0V-1.29564C5.55245 -1.29564 -1.29564 5.55246 -1.29564 14H0H1.29564C1.29564 6.98358 6.98358 1.29564 14 1.29564V0Z" fill="white" fillOpacity="0.2" mask="url(#path-1-inside-1_48_1852)" />
-                            <path d="M18.1013 28.3008V19.5735H20.1581V28.3008H18.1013ZM19.1353 18.3349C18.8096 18.3349 18.5293 18.2269 18.2944 18.011C18.0596 17.7913 17.9422 17.5281 17.9422 17.2212C17.9422 16.9106 18.0596 16.6474 18.2944 16.4315C18.5293 16.2118 18.8096 16.1019 19.1353 16.1019C19.4649 16.1019 19.7452 16.2118 19.9763 16.4315C20.2111 16.6474 20.3285 16.9106 20.3285 17.2212C20.3285 17.5281 20.2111 17.7913 19.9763 18.011C19.7452 18.2269 19.4649 18.3349 19.1353 18.3349ZM24.3299 23.1871V28.3008H22.2731V19.5735H24.239V21.0565H24.3413C24.5421 20.5678 24.8621 20.1796 25.3015 19.8917C25.7447 19.6038 26.2921 19.4599 26.9436 19.4599C27.5459 19.4599 28.0705 19.5887 28.5174 19.8462C28.9682 20.1038 29.3167 20.4769 29.5629 20.9656C29.8129 21.4542 29.936 22.047 29.9322 22.744V28.3008H27.8754V23.0621C27.8754 22.4788 27.7239 22.0224 27.4209 21.6928C27.1216 21.3633 26.7068 21.1985 26.1765 21.1985C25.8167 21.1985 25.4966 21.2781 25.2163 21.4371C24.9398 21.5924 24.722 21.8178 24.5629 22.1133C24.4076 22.4087 24.3299 22.7667 24.3299 23.1871Z" fill="white" />
-                        </svg>
-                    </div>
-
-                    <div className="w-12 h-12 flex items-center justify-center bg-white/10 rounded-xl hover:bg-white/20 transition">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <mask id="path-1-inside-1_48_1855" fill="white">
-                                <path d="M0 14C0 6.26802 6.26801 0 14 0H33.9994C41.7314 0 47.9994 6.26801 47.9994 14V33.9994C47.9994 41.7314 41.7314 47.9994 33.9994 47.9994H14C6.26802 47.9994 0 41.7314 0 33.9994V14Z" />
-                            </mask>
-                            <path d="M0 14C0 6.26802 6.26801 0 14 0H33.9994C41.7314 0 47.9994 6.26801 47.9994 14V33.9994C47.9994 41.7314 41.7314 47.9994 33.9994 47.9994H14C6.26802 47.9994 0 41.7314 0 33.9994V14Z" fill="white" fillOpacity="0.1" />
-                            <path d="M14 0V1.29564H33.9994V0V-1.29564H14V0ZM47.9994 14H46.7038V33.9994H47.9994H49.295V14H47.9994ZM33.9994 47.9994V46.7038H14V47.9994V49.295H33.9994V47.9994ZM0 33.9994H1.29564V14H0H-1.29564V33.9994H0ZM14 47.9994V46.7038C6.98358 46.7038 1.29564 41.0158 1.29564 33.9994H0H-1.29564C-1.29564 42.447 5.55246 49.295 14 49.295V47.9994ZM47.9994 33.9994H46.7038C46.7038 41.0158 41.0158 46.7038 33.9994 46.7038V47.9994V49.295C42.447 49.295 49.295 42.4469 49.295 33.9994H47.9994ZM33.9994 0V1.29564C41.0158 1.29564 46.7038 6.98358 46.7038 14H47.9994H49.295C49.295 5.55245 42.4469 -1.29564 33.9994 -1.29564V0ZM14 0V-1.29564C5.55245 -1.29564 -1.29564 5.55246 -1.29564 14H0H1.29564C1.29564 6.98358 6.98358 1.29564 14 1.29564V0Z" fill="white" fillOpacity="0.2" mask="url(#path-1-inside-1_48_1855)" />
-                            <path d="M19.4062 22.3333V25.6667H21.9063V31.5H25.2396V25.6667H27.7396L28.5729 22.3333H25.2396V20.6667C25.2396 20.2125 25.6188 19.8333 26.0729 19.8333H28.5729V16.5H26.0729C23.8038 16.5 21.9063 18.3975 21.9063 20.6667V22.3333H19.4062Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                    </div>
-
-                    <div className="w-12 h-12 flex items-center justify-center bg-white/10 rounded-xl hover:bg-white/20 transition">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <mask id="path-1-inside-1_48_1858" fill="white">
-                                <path d="M0 14C0 6.26802 6.26801 0 14 0H33.9994C41.7314 0 47.9994 6.26801 47.9994 14V33.9994C47.9994 41.7314 41.7314 47.9994 33.9994 47.9994H14C6.26802 47.9994 0 41.7314 0 33.9994V14Z" />
-                            </mask>
-                            <path d="M0 14C0 6.26802 6.26801 0 14 0H33.9994C41.7314 0 47.9994 6.26801 47.9994 14V33.9994C47.9994 41.7314 41.7314 47.9994 33.9994 47.9994H14C6.26802 47.9994 0 41.7314 0 33.9994V14Z" fill="white" fillOpacity="0.1" />
-                            <path d="M14 0V1.29564H33.9994V0V-1.29564H14V0ZM47.9994 14H46.7038V33.9994H47.9994H49.295V14H47.9994ZM33.9994 47.9994V46.7038H14V47.9994V49.295H33.9994V47.9994ZM0 33.9994H1.29564V14H0H-1.29564V33.9994H0ZM14 47.9994V46.7038C6.98358 46.7038 1.29564 41.0158 1.29564 33.9994H0H-1.29564C-1.29564 42.447 5.55246 49.295 14 49.295V47.9994ZM47.9994 33.9994H46.7038C46.7038 41.0158 41.0158 46.7038 33.9994 46.7038V47.9994V49.295C42.447 49.295 49.295 42.4469 49.295 33.9994H47.9994ZM33.9994 0V1.29564C41.0158 1.29564 46.7038 6.98358 46.7038 14H47.9994H49.295C49.295 5.55245 42.4469 -1.29564 33.9994 -1.29564V0ZM14 0V-1.29564C5.55245 -1.29564 -1.29564 5.55246 -1.29564 14H0H1.29564C1.29564 6.98358 6.98358 1.29564 14 1.29564V0Z" fill="white" fillOpacity="0.2" mask="url(#path-1-inside-1_48_1858)" />
-                            <path d="M26.7815 18.6248C26.1481 18.6247 25.54 18.8732 25.0881 19.3169C24.6361 19.7606 24.3764 20.364 24.3648 20.9973L24.3415 22.3098C24.3401 22.3802 24.3239 22.4496 24.2938 22.5134C24.2637 22.5771 24.2205 22.6338 24.167 22.6797C24.1135 22.7255 24.0509 22.7596 23.9833 22.7796C23.9157 22.7996 23.8447 22.805 23.7748 22.7956L22.4732 22.6189C20.7623 22.3856 19.1223 21.5973 17.5482 20.2864C17.0507 23.0448 18.0232 24.9556 20.3673 26.4298L21.8232 27.3448C21.8924 27.3882 21.9499 27.4479 21.9907 27.5187C22.0315 27.5894 22.0544 27.6691 22.0573 27.7508C22.0601 27.8324 22.043 27.9135 22.0072 27.987C21.9715 28.0605 21.9183 28.1241 21.8523 28.1723L20.5257 29.1414C21.3148 29.1906 22.064 29.1556 22.6857 29.0323C26.6173 28.2473 29.2315 25.2889 29.2315 20.4089C29.2315 20.0106 28.3873 18.6248 26.7815 18.6248ZM22.6982 20.9664C22.7127 20.1631 22.9639 19.382 23.4203 18.7208C23.8767 18.0596 24.518 17.5477 25.2639 17.2492C26.0098 16.9508 26.8272 16.879 27.6138 17.0429C28.4003 17.2068 29.121 17.5991 29.6857 18.1706C30.2782 18.1664 30.7823 18.3164 31.909 17.6331C31.6307 18.9998 31.4923 19.5931 30.8982 20.4089C30.8982 26.7773 26.984 29.8739 23.0115 30.6664C20.289 31.2098 16.3282 30.3173 15.1948 29.1323C15.7723 29.0873 18.1223 28.8348 19.4807 27.8406C18.3307 27.0823 13.7573 24.3906 16.7632 17.1548C18.1743 18.8025 19.6048 19.9239 21.0548 20.5189C22.019 20.9148 22.2565 20.9073 22.699 20.9673" fill="white" />
-                        </svg>
-                    </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row justify-center items-center gap-4 text-white/60 text-xs sm:text-sm text-center mt-8">
-                    <p>&copy; 2026 Nomad Recruitment. All rights reserved.</p>
-
-                    <div className="flex flex-wrap justify-center gap-4">
-                        <p>Status</p>
-                        <p>Security</p>
-                        <p>Cookie Settings</p>
-                    </div>
-                </div>
-
+      <div className="relative max-w-[1216px] mx-auto pt-20 px-6 flex flex-col items-start gap-12">
+        {/* Logo + tagline */}
+        <div className="w-full">
+          <div className="flex flex-col items-center gap-4">
+            <div className="flex items-center gap-3">
+              <div className="relative size-14 shrink-0">
+                <div className="absolute inset-0 bg-white/20 rounded-2xl blur-lg" />
+                <img src={logo} alt="Nomad Recruitment" className="relative size-14 shadow-[0px_25px_50px_0px_rgba(0,0,0,0.15)]" />
+              </div>
+              <span className="text-white text-2xl font-semibold leading-8">Nomad Recruitment</span>
             </div>
-        </section>
-    );
+            <p className="text-white/80 text-base font-normal leading-6 text-center">
+              The transparent recruitment marketplace where both sides decide the deal.
+            </p>
+          </div>
+        </div>
+
+        {/* Nav links */}
+        <div className="w-full pb-[1.30px] border-b-[1.30px] border-white/10">
+          <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-3 pb-6">
+            <a href="#" className="text-white/70 text-sm font-normal leading-5 hover:text-white transition">How It Works</a>
+            <a href="#" className="text-white/70 text-sm font-normal leading-5 hover:text-white transition">Pricing</a>
+            <a href="#" className="text-white/70 text-sm font-normal leading-5 hover:text-white transition">About Us</a>
+            <span className="text-white/30 text-sm hidden sm:inline">•</span>
+            <a href="#" className="text-white/70 text-sm font-normal leading-5 hover:text-white transition">For Companies</a>
+            <a href="#" className="text-white/70 text-sm font-normal leading-5 hover:text-white transition">For Recruiters</a>
+            <a href="#" className="text-white/70 text-sm font-normal leading-5 hover:text-white transition">FAQs</a>
+            <span className="text-white/30 text-sm hidden sm:inline">•</span>
+            <a href="#" className="text-white/70 text-sm font-normal leading-5 hover:text-white transition">Privacy Policy</a>
+            <a href="#" className="text-white/70 text-sm font-normal leading-5 hover:text-white transition">Terms</a>
+            <a href="#" className="text-white/70 text-sm font-normal leading-5 hover:text-white transition">Compliance</a>
+          </div>
+        </div>
+
+        {/* Social icons */}
+        <div className="w-full flex justify-center items-center gap-4">
+          {/* LinkedIn */}
+          <a href="#" className="size-12 bg-white/10 rounded-2xl outline-[1.30px] outline-solid outline-white/20 flex justify-center items-center hover:bg-white/20 transition">
+            <span className="text-white text-base font-semibold leading-6">in</span>
+          </a>
+          {/* Facebook */}
+          <a href="#" className="size-12 bg-white/10 rounded-2xl outline-[1.30px] outline-solid outline-white/20 flex justify-center items-center hover:bg-white/20 transition">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.4165 8.33333V11.6667H7.9165V17.5H11.2498V11.6667H13.7498L14.5832 8.33333H11.2498V6.66667C11.2498 6.2125 11.629 5.83333 12.0832 5.83333H14.5832V2.5H12.0832C9.814 2.5 7.9165 4.3975 7.9165 6.66667V8.33333H5.4165Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
+          {/* Twitter/X */}
+          <a href="#" className="size-12 bg-white/10 rounded-2xl outline-[1.30px] outline-solid outline-white/20 flex justify-center items-center hover:bg-white/20 transition">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.7917 4.62477C12.1584 4.62466 11.5503 4.8732 11.0983 5.31691C10.6464 5.76061 10.3867 6.36402 10.3751 6.99727L10.3517 8.30977C10.3504 8.38024 10.3341 8.44963 10.3041 8.51337C10.274 8.57712 10.2308 8.63379 10.1773 8.67967C10.1238 8.72555 10.0612 8.75959 9.99358 8.77957C9.92598 8.79955 9.85493 8.80501 9.78508 8.7956L8.48341 8.61894C6.77258 8.3856 5.13258 7.59727 3.55841 6.28644C3.06091 9.04477 4.03341 10.9556 6.37758 12.4298L7.83341 13.3448C7.90263 13.3882 7.96017 13.4479 8.00098 13.5187C8.04178 13.5894 8.06463 13.6691 8.0675 13.7508C8.07038 13.8324 8.05321 13.9135 8.01748 13.987C7.98176 14.0605 7.92857 14.1241 7.86258 14.1723L6.53591 15.1414C7.32508 15.1906 8.07425 15.1556 8.69591 15.0323C12.6276 14.2473 15.2417 11.2889 15.2417 6.40894C15.2417 6.0106 14.3976 4.62477 12.7917 4.62477ZM8.70841 6.96644C8.72296 6.16315 8.97415 5.38199 9.43054 4.72079C9.88694 4.05958 10.5282 3.5477 11.2742 3.24924C12.0201 2.95078 12.8375 2.879 13.624 3.04289C14.4106 3.20678 15.1313 3.59906 15.6959 4.1706C16.2884 4.16644 16.7926 4.31644 17.9192 3.6331C17.6409 4.99977 17.5026 5.5931 16.9084 6.40894C16.9084 12.7773 12.9942 15.8739 9.02175 16.6664C6.29925 17.2098 2.33841 16.3173 1.20508 15.1323C1.78258 15.0873 4.13258 14.8348 5.49091 13.8406C4.34091 13.0823 -0.232422 10.3906 2.77341 3.15477C4.18452 4.80255 5.61508 5.92394 7.06508 6.51894C8.02924 6.91477 8.26675 6.90727 8.70925 6.96727" fill="white"/>
+            </svg>
+          </a>
+        </div>
+
+        {/* Copyright + bottom links */}
+        <div className="w-full pt-8 border-t-[1.30px] border-white/10">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 pb-8">
+            <p className="text-white/60 text-sm font-normal leading-5 text-center">
+              © 2026 Nomad Recruitment. All rights reserved.
+            </p>
+            <div className="flex items-center gap-6">
+              <a href="#" className="text-white/60 text-sm font-normal leading-5 hover:text-white transition">Status</a>
+              <span className="text-white/30 text-sm">•</span>
+              <a href="#" className="text-white/60 text-sm font-normal leading-5 hover:text-white transition">Security</a>
+              <span className="text-white/30 text-sm">•</span>
+              <a href="#" className="text-white/60 text-sm font-normal leading-5 hover:text-white transition">Cookie Settings</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;

@@ -1,52 +1,57 @@
 import React from "react";
 
-/**
- * AboutSection — reusable component for both the landing page summary
- * and the full About page. Pass `full` prop to render extended content.
- */
 const AboutSection = ({ full = false }) => {
   return (
     <>
       {/* ── Hero / Intro ── */}
-      <section className="w-full bg-linear-to-b from-white to-[#F9FAFB4D] py-16 px-4">
-        <div className="max-w-7xl mx-auto flex flex-col items-center">
+      <section className="w-full relative bg-linear-to-b from-white via-gray-50/30 to-white overflow-hidden py-14 px-4">
+        {/* Decorative background elements */}
+        <div className="absolute size-[600px] right-[-120px] top-[-60px] bg-cyan-900/5 rounded-full blur-3xl" />
+        <div className="absolute size-80 left-[-128px] bottom-[-200px] bg-blue-400/5 rounded-full blur-3xl" />
+        <div className="absolute size-96 left-1/2 -translate-x-1/2 top-[460px] bg-linear-to-br from-blue-500/5 to-transparent rounded-full blur-2xl" />
+        <div className="absolute size-24 right-[80px] bottom-[80px] bg-linear-to-br from-blue-500/10 to-transparent rounded-full" />
+        <div className="absolute w-3 h-32 left-[51px] top-[506px] bg-linear-to-b from-slate-900/20 to-transparent rounded-full hidden lg:block" />
+        <div className="absolute size-20 left-[474px] top-[14px] origin-top-left rotate-12 rounded-2xl border-[1.30px] border-cyan-900/10 hidden lg:block" />
 
-          <div className="text-center max-w-3xl">
-            <span className="inline-block px-4 py-2 rounded-full bg-[#25406A14] text-sm font-medium mb-4">
-              About Us
-            </span>
+        <div className="relative max-w-[1280px] mx-auto flex flex-col items-center">
+          <div className="text-center max-w-[896px]">
+            <div className="inline-flex justify-center items-center px-5 py-2.5 rounded-full bg-cyan-900/10 mb-6">
+              <span className="text-slate-900 text-sm font-medium leading-5">About Us</span>
+            </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight md:leading-[79.20px] text-slate-900">
               What is Nomad Recruitment?
             </h1>
 
-            <div className="w-24 h-1 mx-auto my-6 rounded-full bg-linear-to-r from-[#0F172A] to-[#334F90]" />
+            <div className="w-24 h-2 mx-auto mt-4 mb-8 rounded-2xl bg-linear-to-l from-slate-900 to-blue-900" />
 
-            <p className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-600">
+            <p className="text-base sm:text-lg md:text-xl leading-relaxed md:leading-10 text-gray-600 max-w-[768px] mx-auto">
               {full
-                ? "Nomad Recruitment is an online recruitment marketplace that connects companies directly with recruiters and recruitment agencies. Instead of long contracts, high percentage fees, or one-sided control, Nomad lets both sides make clear agreements upfront."
+                ? "Nomad Recruitment is an online recruitment marketplace that connects companies directly with recruiters and recruitment agencies. Instead of long contracts, high percentage fees, or one-sided control, we bring companies and recruiters together in one transparent marketplace. No CVs thrown over the fence. No paying without results. No unnecessary middlemen."
                 : "A transparent marketplace connecting companies with professional recruiters, built on fairness and mutual empowerment."}
             </p>
           </div>
 
           {/* ── Feature Cards (Marketplace & Process) ── */}
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-[1040px]">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-7 w-full max-w-[1018px]">
 
             {/* Card 1 — Marketplace */}
-            <div className="group relative bg-white border-[1.08px] border-gray-200 rounded-[20px] shadow-md p-5 sm:p-8 hover:sm:pl-12 flex flex-col gap-4 min-h-[200px] sm:min-h-[272px] overflow-hidden transition-all duration-300">
-              <div className="absolute top-[1.08px] left-[1.08px] w-[7px] h-[calc(100%-2.16px)] rounded-[13px] bg-linear-to-b from-[#0F172A] to-[#334F90] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="relative bg-white rounded-[20.09px] shadow-[0px_6.7px_8.4px_-5px_rgba(0,0,0,0.10),0px_16.7px_20.9px_-4.2px_rgba(0,0,0,0.10)] outline-[1.08px] outline-solid outline-gray-100 overflow-hidden p-5 sm:p-[35px] flex flex-col gap-4 min-h-[200px] sm:min-h-[256px]">
+              <div className="absolute top-[1.08px] left-[1.08px] w-1.5 h-[calc(100%-2.16px)] rounded-xl bg-linear-to-l from-slate-900 to-blue-900" />
+              <div className="absolute size-32 right-0 top-0 rounded-tr-[20.09px]" />
+              <div className="absolute size-28 right-[10px] bottom-[10px] bg-linear-to-br from-blue-400/5 to-transparent rounded-full blur-[33px]" />
 
-              <div className="flex items-center justify-between">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-linear-to-r from-[#0F172A] to-[#334F90] text-white flex items-center justify-center font-semibold text-sm sm:text-base">
+              <div className="flex items-center gap-3.5">
+                <div className="size-12 shrink-0 rounded-xl bg-linear-to-l from-slate-900 to-blue-900 text-white flex items-center justify-center font-semibold text-base leading-6">
                   1
                 </div>
-                <div className="flex-1 h-px mx-3 sm:mx-4 bg-linear-to-r from-[#25406A4D] to-transparent" />
-                <div className="bg-[#25406A14] rounded-full px-3 sm:px-4 py-1 text-xs sm:text-sm">
-                  Marketplace
+                <div className="flex-1 h-[0.83px] bg-linear-to-r from-cyan-900/30 to-transparent" />
+                <div className="bg-cyan-900/5 rounded-full px-3.5 pt-2.5 pb-2">
+                  <span className="text-slate-900 text-[10.05px] font-medium leading-3">Marketplace</span>
                 </div>
               </div>
 
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-700 font-normal leading-7">
                 Nomad Recruitment is a transparent marketplace connecting
                 companies with professional recruiters and agencies. Unlike
                 traditional platforms with hidden fees and rigid structures, we
@@ -55,20 +60,22 @@ const AboutSection = ({ full = false }) => {
             </div>
 
             {/* Card 2 — Process */}
-            <div className="group relative bg-white border-[1.08px] border-gray-200 rounded-[20px] shadow-md p-5 sm:p-8 hover:sm:pl-12 flex flex-col gap-4 min-h-[200px] sm:min-h-[272px] overflow-hidden transition-all duration-300">
-              <div className="absolute top-[1.08px] left-[1.08px] w-[7px] h-[calc(100%-2.16px)] rounded-[13px] bg-linear-to-b from-[#0F172A] to-[#334F90] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="relative bg-white rounded-[20.09px] shadow-[0px_6.7px_8.4px_-5px_rgba(0,0,0,0.10),0px_16.7px_20.9px_-4.2px_rgba(0,0,0,0.10)] outline-[1.08px] outline-solid outline-gray-100 overflow-hidden p-5 sm:p-[35px] flex flex-col gap-4 min-h-[200px] sm:min-h-[256px]">
+              <div className="absolute top-[1.08px] left-[1.08px] w-1.5 h-[calc(100%-2.16px)] rounded-xl bg-linear-to-l from-slate-900 to-blue-900" />
+              <div className="absolute size-32 right-0 top-0 rounded-tr-[20.09px]" />
+              <div className="absolute size-28 right-[10px] bottom-[10px] bg-linear-to-br from-blue-500/5 to-transparent rounded-full blur-[33px]" />
 
-              <div className="flex items-center justify-between">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-linear-to-r from-[#0F172A] to-[#334F90] text-white flex items-center justify-center font-semibold text-sm sm:text-base">
+              <div className="flex items-center gap-3.5">
+                <div className="size-12 shrink-0 rounded-xl bg-linear-to-l from-slate-900 to-blue-900 text-white flex items-center justify-center font-semibold text-base leading-6">
                   2
                 </div>
-                <div className="flex-1 h-px mx-3 sm:mx-4 bg-linear-to-r from-[#25406A4D] to-transparent" />
-                <div className="bg-[#25406A14] rounded-full px-3 sm:px-4 py-1 text-xs sm:text-sm">
-                  Process
+                <div className="flex-1 h-[0.83px] bg-linear-to-r from-blue-500/30 to-transparent" />
+                <div className="bg-blue-50 rounded-full px-3.5 pt-2.5 pb-2">
+                  <span className="text-slate-900 text-[10.05px] font-medium leading-3">Process</span>
                 </div>
               </div>
 
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-700 font-normal leading-7">
                 Companies post roles and review candidate proposals with upfront
                 fees. Recruiters present qualified candidates and negotiate their
                 terms directly. Payment is held securely and only released when
@@ -134,7 +141,6 @@ const AboutSection = ({ full = false }) => {
           <h1 className="text-2xl sm:text-3xl md:text-[42px] font-semibold leading-tight md:leading-[56px] text-center text-[#0F172A] max-w-[717px]">Quality matters — especially in recruitment.</h1>
           <p className="text-sm sm:text-base md:text-[18px] font-normal leading-relaxed md:leading-[32px] text-center text-[#4A5565] max-w-[895px]">Nomad is built around trust. Companies, recruiters, and recruitment agencies are verified before they can actively use the platform. By keeping the platform focused on quality, Nomad creates a safer and more reliable environment where connections are meaningful.</p>
 
-          {/* Verified trust cards */}
           {/* Verified trust cards */}
           <div className="w-full max-w-[900px] mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             <div className="bg-white rounded-2xl shadow-sm p-5 sm:p-6 flex flex-col items-center text-center gap-2 sm:gap-3">
