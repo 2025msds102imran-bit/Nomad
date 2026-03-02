@@ -23,22 +23,27 @@ const SignupPage = () => {
 
   return (
     <div className="w-full">
-      <div className="bg-white rounded-[20px] border-[1.07px] border-gray-200 p-[33px] flex flex-col gap-[26px] shadow-[0px_3.91px_5.87px_-3.91px_#0000001A,0px_9.78px_14.66px_-2.93px_#0000001A]">
+      <div className="bg-white rounded-[20px] p-8 flex flex-col gap-7 shadow-[0px_3.31px_4.97px_-3.31px_rgba(0,0,0,0.10),0px_8.28px_12.42px_-2.48px_rgba(0,0,0,0.10)] outline-[1.07px] outline-gray-200">
         <div className="text-center">
-          <h1 className="text-[26.5px] font-semibold leading-[33px] text-center text-[#0F172A]">Welcome to Nomad Company</h1>
-          <p className="text-sm text-gray-500 mt-2">
+          <h1 className="text-2xl font-semibold leading-8 text-slate-900">
+            Welcome to Nomad Company
+          </h1>
+          <p className="text-xs text-gray-500 mt-1.5">
             If you already have an account, you can{" "}
-            <Link to="/auth/login" className="text-[#334F90] font-medium hover:underline">log in here!</Link>
+            <Link to="/auth/login" className="text-cyan-900 font-medium hover:underline">
+              log in here!
+            </Link>
           </p>
         </div>
 
-        <form className="flex flex-col gap-[20px]" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
           <Input
             label="Company Name"
             id="signup-company"
             placeholder="Enter company name"
             value={companyName}
             onChange={(e) => setCompanyName(e.target.value)}
+            size="sm"
             required
           />
           <Input
@@ -48,6 +53,7 @@ const SignupPage = () => {
             placeholder="Enter email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            size="sm"
             required
           />
           <Input
@@ -57,6 +63,7 @@ const SignupPage = () => {
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            size="sm"
             required
           />
           <Input
@@ -66,6 +73,7 @@ const SignupPage = () => {
             placeholder="Enter contact number"
             value={contactNumber}
             onChange={(e) => setContactNumber(e.target.value)}
+            size="sm"
             required
           />
           <Input
@@ -74,6 +82,7 @@ const SignupPage = () => {
             placeholder="Search location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
+            size="sm"
             required
           />
           <div>
@@ -85,11 +94,11 @@ const SignupPage = () => {
               options={registrationOptions}
               placeholder="Search Registration no."
             />
-            <p className="text-xs text-gray-400 mt-1.5">
+            <p className="text-[10px] text-gray-400 mt-1.5">
               Search for your company using the registration number (e.g., 2019/123456/07)
             </p>
           </div>
-          <Button type="submit" fullWidth>
+          <Button type="submit" size="md" fullWidth>
             Save and Next
           </Button>
         </form>

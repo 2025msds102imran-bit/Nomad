@@ -1,8 +1,8 @@
 import React from "react";
 
 const variants = {
-  primary: "bg-linear-to-r from-[#0F172A] to-[#334F90] text-white shadow-lg hover:shadow-xl",
-  secondary: "bg-white text-[#0F172A] border border-gray-300 hover:bg-gray-50",
+  primary: "bg-[#25406A] text-white hover:bg-cyan-950",
+  secondary: "bg-white text-cyan-900 outline-[1.27px] outline-cyan-900 ",
   outline: "bg-transparent border border-white text-white hover:bg-white/10",
 };
 
