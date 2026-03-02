@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import logo from "../assets/logo.png";
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
   const [langOpen, setLangOpen] = useState(false);
@@ -8,6 +9,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   useEffect(() => {
     if (!langOpen) return;
@@ -86,13 +88,21 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Sign In */}
-          <button
-            onClick={() => navigate('/auth/login')}
-            className="w-24 h-11 bg-white/95 rounded-2xl flex items-center justify-center hover:bg-white transition"
-          >
-            <span className="text-slate-900 text-sm font-medium leading-5">Sign In</span>
-          </button>
+          {user ? (
+            <button
+              onClick={() => navigate('/dashboard')}
+              className="h-11 px-5 bg-white/95 rounded-2xl flex items-center justify-center hover:bg-white transition"
+            >
+              <span className="text-slate-900 text-sm font-medium leading-5">Dashboard</span>
+            </button>
+          ) : (
+            <button
+              onClick={() => navigate('/auth/login')}
+              className="w-24 h-11 bg-white/95 rounded-2xl flex items-center justify-center hover:bg-white transition"
+            >
+              <span className="text-slate-900 text-sm font-medium leading-5">Sign In</span>
+            </button>
+          )}
         </div>
 
         {/* Mobile hamburger */}
@@ -158,12 +168,21 @@ const Navbar = () => {
               )}
             </div>
 
-            <button
-              onClick={() => { navigate('/auth/login'); setMenuOpen(false); }}
-              className="mt-6 w-full h-11 bg-white/95 rounded-2xl flex items-center justify-center"
-            >
-              <span className="text-slate-900 text-sm font-medium leading-5">Sign In</span>
-            </button>
+            {user ? (
+              <button
+                onClick={() => { navigate('/dashboard'); setMenuOpen(false); }}
+                className="mt-6 w-full h-11 bg-white/95 rounded-2xl flex items-center justify-center"
+              >
+                <span className="text-slate-900 text-sm font-medium leading-5">Dashboard</span>
+              </button>
+            ) : (
+              <button
+                onClick={() => { navigate('/auth/login'); setMenuOpen(false); }}
+                className="mt-6 w-full h-11 bg-white/95 rounded-2xl flex items-center justify-center"
+              >
+                <span className="text-slate-900 text-sm font-medium leading-5">Sign In</span>
+              </button>
+            )}
           </div>
         </div>
       </div>
