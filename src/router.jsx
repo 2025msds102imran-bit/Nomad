@@ -18,6 +18,14 @@ import Unauthor from './website/Unauthor';
 import DashboardHome from './pages/companyRole/DashboardHome';
 import JobsPage from './pages/companyRole/JobsPage';
 import CandidatesPage from './pages/companyRole/CandidatesPage';
+import RecentPlacementsPage from './pages/companyRole/RecentPlacementsPage';
+import CompanyDetailPage from './pages/companyRole/CompanyDetailPage';
+import MyBidPage from './pages/companyRole/MyBidPage';
+import ProfilePage from './pages/companyRole/ProfilePage';
+import ChatPage from './pages/companyRole/ChatPage';
+import SubscriptionPage from './pages/companyRole/SubscriptionPage';
+import NotificationsPage from './pages/companyRole/NotificationsPage';
+import SupportPage from './pages/companyRole/SupportPage';
 
 const AppRouter = () => {
   return (
@@ -45,6 +53,14 @@ const AppRouter = () => {
         <Route index element={<DashboardHome />} />
         <Route path="jobs" element={<JobsPage />} />
         <Route path="candidates" element={<CandidatesPage />} />
+        <Route path="placements" element={<RecentPlacementsPage />} />
+        <Route path="company/:id" element={<CompanyDetailPage />} />
+        <Route path="bids" element={<MyBidPage />} />
+        <Route path="profile" element={<ProfilePage />} />
+        <Route path="chat" element={<ChatPage />} />
+        <Route path="payments" element={<SubscriptionPage />} />
+        <Route path="notifications" element={<NotificationsPage />} />
+        <Route path="support" element={<SupportPage />} />
       </Route>
 
       {/* 404 catch-all */}

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { Search, X, Star, MapPin, Clock, Eye, Mail, DollarSign, Briefcase, MessageSquare } from "lucide-react";
-import { vacancyCards, vacancyStats } from "../../data/dummyData";
+import { vacancyCards, jobs, candidates } from "../../data/dummyData";
 import { StatCard, DropdownFilter, StarRating } from "../../global";
 
 const BriefcaseIcon = ({ color }) => (
@@ -66,9 +67,9 @@ const VacancyCard = ({ card }) => (
 
     <div className="flex flex-col gap-2 mt-3">
       <div className="flex gap-[11px]">
-        <button className="flex-1 h-10 bg-cyan-900 rounded-[10px] flex justify-center items-center gap-1 text-white text-sm font-medium">
+        <Link to={`/dashboard/company/${card.id}`} className="flex-1 h-10 bg-cyan-900 rounded-[10px] flex justify-center items-center gap-1 text-white text-sm font-medium">
           <Eye size={16} stroke="white" /> View Profile
-        </button>
+        </Link>
         <button className="flex-1 h-10 bg-white rounded-[10px] outline-1 outline-gray-200 flex justify-center items-center gap-1 text-slate-900 text-sm font-medium">
           <Mail size={16} stroke="#0F172A" /> Connect
         </button>
@@ -95,11 +96,37 @@ const JobsPage = () => {
   const [category, setCategory] = useState("HR");
   const [location, setLocation] = useState("HR");
 
+  const computedStats = useMemo(() => {
+    const openVacancies = jobs.filter((j) => j.status === "Active").length;
+    const matching = vacancyCards.length;
+    const activeBids = candidates.filter((c) => c.status === "Offer Sent" || c.status === "Under Review").length;
+    const nearby = jobs.filter((j) => j.location === "Remote").length;
+    const total = Math.max(jobs.length, 1);
+    return [
+      { label: "Open Vacancies", value: openVacancies, change: `+${Math.round(openVacancies * 0.1)}`, pct: `${Math.round((openVacancies / total) * 100)}%`, iconColor: "#6366F1", bgColor: "bg-indigo-500/10" },
+      { label: "Matching Vacancies", value: matching, change: `+${matching}`, pct: `${Math.round((matching / total) * 100)}%`, iconColor: "#EC4899", bgColor: "bg-pink-500/10" },
+      { label: "Active Bids", value: activeBids, change: `+${activeBids}`, pct: `${Math.round((activeBids / total) * 100)}%`, iconColor: "#10B981", bgColor: "bg-emerald-500/10" },
+      { label: "Nearby Jobs", value: nearby, change: `+${nearby}`, pct: `${Math.round((nearby / total) * 100)}%`, iconColor: "#F59E0B", bgColor: "bg-amber-500/10" },
+    ];
+  }, []);
+
+  const filteredCards = useMemo(() => {
+    if (!searchQuery.trim()) return vacancyCards;
+    const q = searchQuery.toLowerCase();
+    return vacancyCards.filter(
+      (card) =>
+        card.company.toLowerCase().includes(q) ||
+        card.title.toLowerCase().includes(q) ||
+        card.location.toLowerCase().includes(q) ||
+        card.type.toLowerCase().includes(q),
+    );
+  }, [searchQuery]);
+
   return (
     <div className="flex flex-col gap-6">
       {/* Stat Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {vacancyStats.map((stat, i) => (
+        {computedStats.map((stat, i) => (
           <StatCard key={i} stat={stat} Icon={statIcons[i]} className="w-full" />
         ))}
       </div>
@@ -186,7 +213,10 @@ const JobsPage = () => {
           <button className="flex-1 sm:flex-none sm:w-40 h-11 bg-cyan-900 rounded-lg flex items-center justify-center gap-2 text-white text-sm font-medium">
             <Search size={17} stroke="white" /> Apply Filters
           </button>
-          <button className="flex-1 sm:flex-none sm:w-32 h-11 bg-white rounded-lg outline-[1.5px] outline-gray-200 flex items-center justify-center gap-2 text-gray-600 text-sm font-medium">
+          <button
+            onClick={() => setSearchQuery("")}
+            className="flex-1 sm:flex-none sm:w-32 h-11 bg-white rounded-lg outline-[1.5px] outline-gray-200 flex items-center justify-center gap-2 text-gray-600 text-sm font-medium"
+          >
             <X size={17} stroke="#4A5565" /> Clear All
           </button>
         </div>
@@ -194,9 +224,14 @@ const JobsPage = () => {
 
       {/* Job Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-        {vacancyCards.map((card) => (
+        {filteredCards.map((card) => (
           <VacancyCard key={card.id} card={card} />
         ))}
+        {filteredCards.length === 0 && (
+          <div className="col-span-full text-center text-gray-400 text-sm py-12">
+            No jobs found matching your search.
+          </div>
+        )}
       </div>
     </div>
   );

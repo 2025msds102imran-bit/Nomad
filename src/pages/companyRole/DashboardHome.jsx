@@ -1,4 +1,5 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import {
   Briefcase,
   Users,
@@ -248,7 +249,12 @@ const DashboardHome = () => {
     vacancies: { value: activeJobs.length.toLocaleString(), change: `+${Math.floor(activeJobs.length * 0.1)}`, pct: `${Math.round((activeJobs.length / Math.max(jobs.length, 1)) * 100)}%` },
     candidates: { value: candidates.length.toLocaleString(), change: `+${Math.floor(candidates.length * 0.2)}`, pct: `${Math.round((candidates.filter((c) => c.status === "Active" || c.status === "Interview").length / Math.max(candidates.length, 1)) * 100)}%` },
     placements: { value: hiredCandidates.length + placements.length, change: `+${placements.length}`, pct: `${Math.round(((hiredCandidates.length + placements.length) / Math.max(candidates.length, 1)) * 100)}%` },
-    revenue: { value: formatCurrency(totalRevenue), change: `+${formatCurrency(Math.round(totalRevenue * 0.15))}`, pct: "15%" },
+    revenue: (() => {
+      const prev = revenueData.length >= 2 ? revenueData[revenueData.length - 2].value : 0;
+      const curr = revenueData.length >= 1 ? revenueData[revenueData.length - 1].value : 0;
+      const growth = prev > 0 ? Math.round(((curr - prev) / prev) * 100) : 0;
+      return { value: formatCurrency(totalRevenue), change: `+${formatCurrency(curr - prev)}`, pct: `${growth}%` };
+    })(),
     bids: { value: pendingBids.length.toString(), change: `${Math.floor(pendingBids.length * 0.6)}`, pct: `${Math.round((pendingBids.length / Math.max(candidates.length, 1)) * 100)}%` },
     interviews: { value: interviewCandidates.length + interviews.length, change: `+${interviews.length}`, pct: `${Math.round(((interviewCandidates.length + interviews.length) / Math.max(candidates.length, 1)) * 100)}%` },
   }), [activeJobs, hiredCandidates, interviewCandidates, pendingBids, totalRevenue, completedPayments]);
@@ -294,19 +300,59 @@ const DashboardHome = () => {
     [],
   );
 
+  const chartMax = useMemo(() => {
+    if (revenueData.length === 0) return 80000;
+    const raw = Math.max(...revenueData.map((d) => d.value));
+    const step = Math.pow(10, Math.floor(Math.log10(raw)));
+    return Math.ceil(raw / step) * step;
+  }, []);
+
+  const chartYLabels = useMemo(() => {
+    const steps = 5;
+    return Array.from({ length: steps }, (_, i) => Math.round((chartMax / (steps - 1)) * i));
+  }, [chartMax]);
+
   const chartPath = useMemo(() => {
-    if (revenueData.length === 0) return { area: "", line: "" };
-    const maxVal = Math.max(...revenueData.map((d) => d.value));
+    if (revenueData.length === 0) return { area: "", line: "", points: [] };
     const xStart = 65, xEnd = 704, yTop = 36, yBottom = 195;
     const xStep = (xEnd - xStart) / (revenueData.length - 1);
     const points = revenueData.map((d, i) => ({
       x: xStart + i * xStep,
-      y: yBottom - ((d.value / maxVal) * (yBottom - yTop)),
+      y: yBottom - ((d.value / chartMax) * (yBottom - yTop)),
+      value: d.value,
+      month: d.month,
     }));
     const line = points.map((p, i) => `${i === 0 ? "M" : "L"}${p.x} ${p.y}`).join(" ");
     const area = `${line} L${xEnd} ${yBottom} L${xStart} ${yBottom}Z`;
-    return { area, line };
+    return { area, line, points };
+  }, [chartMax]);
+
+  const [hoveredPoint, setHoveredPoint] = useState(null);
+  const [chartAnimated, setChartAnimated] = useState(false);
+  const lineRef = useRef(null);
+  const svgRef = useRef(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setChartAnimated(true), 100);
+    return () => clearTimeout(timer);
   }, []);
+
+  const handleChartMouseMove = (e) => {
+    if (!svgRef.current || chartPath.points.length === 0) return;
+    const rect = svgRef.current.getBoundingClientRect();
+    const svgX = ((e.clientX - rect.left) / rect.width) * 710;
+    let closest = null;
+    let minDist = Infinity;
+    chartPath.points.forEach((p, i) => {
+      const dist = Math.abs(svgX - p.x);
+      if (dist < minDist) {
+        minDist = dist;
+        closest = { ...p, index: i };
+      }
+    });
+    if (closest && minDist < 60) setHoveredPoint(closest);
+    else setHoveredPoint(null);
+  };
 
   return (
     <>
@@ -342,16 +388,27 @@ const DashboardHome = () => {
               <button className="w-9 h-7 rounded-[10px] text-xs font-medium text-gray-600 leading-4">1Y</button>
             </div>
           </div>
-          <div className="flex-1 w-full overflow-hidden">
-            <svg viewBox="0 0 710 220" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
-              {[195, 148, 100, 53, 5].map((y, i) => (
-                <line key={i} x1="65" y1={y} x2="704" y2={y} stroke="#F1F5F9" strokeWidth="1" strokeDasharray="3 3" />
-              ))}
-              {["0", "20000", "40000", "60000", "80000"].map((label, i) => (
-                <text key={label} x="60" y={[195, 148, 100, 53, 5][i] + 4} textAnchor="end" className="fill-slate-400 text-[12px] font-bold">
-                  {label}
-                </text>
-              ))}
+          <div className="flex-1 w-full overflow-hidden relative">
+            <svg
+              ref={svgRef}
+              viewBox="0 0 710 220"
+              className="w-full h-full"
+              preserveAspectRatio="xMidYMid meet"
+              onMouseMove={handleChartMouseMove}
+              onMouseLeave={() => setHoveredPoint(null)}
+            >
+              {chartYLabels.map((_, i) => {
+                const y = 195 - (i / (chartYLabels.length - 1)) * (195 - 5);
+                return <line key={i} x1="65" y1={y} x2="704" y2={y} stroke="#F1F5F9" strokeWidth="1" strokeDasharray="3 3" />;
+              })}
+              {chartYLabels.map((label, i) => {
+                const y = 195 - (i / (chartYLabels.length - 1)) * (195 - 5);
+                return (
+                  <text key={label} x="60" y={y + 4} textAnchor="end" className="fill-slate-400 text-[12px] font-bold">
+                    {label.toLocaleString()}
+                  </text>
+                );
+              })}
               {revenueData.map((d, i) => (
                 <text key={d.month} x={65 + i * ((704 - 65) / (revenueData.length - 1))} y={212} textAnchor="middle" className="fill-slate-400 text-[12px] font-bold">
                   {d.month}
@@ -362,10 +419,90 @@ const DashboardHome = () => {
                   <stop offset="0.05" stopColor="#6366F1" stopOpacity="0.4" />
                   <stop offset="0.95" stopColor="#6366F1" stopOpacity="0.05" />
                 </linearGradient>
+                <clipPath id="areaClip">
+                  <rect x="65" y="0" width={chartAnimated ? 639 : 0} height="220" style={{ transition: "width 1.5s ease-out" }} />
+                </clipPath>
               </defs>
-              <path d={chartPath.area} fill="url(#areaGrad)" />
-              <path d={chartPath.line} fill="none" stroke="#6366F1" strokeWidth="3" />
+
+              {/* Animated area */}
+              <g clipPath="url(#areaClip)">
+                <path d={chartPath.area} fill="url(#areaGrad)" />
+              </g>
+
+              {/* Animated line */}
+              <path
+                ref={lineRef}
+                d={chartPath.line}
+                fill="none"
+                stroke="#6366F1"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeDasharray="2000"
+                strokeDashoffset={chartAnimated ? 0 : 2000}
+                style={{ transition: "stroke-dashoffset 1.5s ease-out" }}
+              />
+
+              {/* Data point dots */}
+              {chartPath.points.map((p, i) => (
+                <circle
+                  key={i}
+                  cx={p.x}
+                  cy={p.y}
+                  r={hoveredPoint?.index === i ? 6 : 0}
+                  fill="white"
+                  stroke="#6366F1"
+                  strokeWidth="3"
+                  style={{ transition: "r 0.15s ease" }}
+                />
+              ))}
+
+              {/* Hover guideline */}
+              {hoveredPoint && (
+                <line
+                  x1={hoveredPoint.x}
+                  y1={hoveredPoint.y}
+                  x2={hoveredPoint.x}
+                  y2={195}
+                  stroke="#6366F1"
+                  strokeWidth="1"
+                  strokeDasharray="4 3"
+                  opacity="0.5"
+                />
+              )}
+
+              {/* Hover invisible hit areas */}
+              {chartPath.points.map((p, i) => (
+                <rect
+                  key={`hit-${i}`}
+                  x={p.x - 30}
+                  y={0}
+                  width={60}
+                  height={220}
+                  fill="transparent"
+                  className="cursor-pointer"
+                  onMouseEnter={() => setHoveredPoint({ ...p, index: i })}
+                />
+              ))}
             </svg>
+
+            {/* Tooltip */}
+            {hoveredPoint && svgRef.current && (() => {
+              const rect = svgRef.current.getBoundingClientRect();
+              const xPct = (hoveredPoint.x / 710) * 100;
+              const yPct = (hoveredPoint.y / 220) * 100;
+              return (
+                <div
+                  className="absolute pointer-events-none z-10 -translate-x-1/2 -translate-y-full"
+                  style={{ left: `${xPct}%`, top: `calc(${yPct}% - 12px)` }}
+                >
+                  <div className="bg-slate-900 text-white px-3 py-1.5 rounded-lg shadow-lg text-center whitespace-nowrap">
+                    <p className="text-xs font-medium opacity-70">{hoveredPoint.month}</p>
+                    <p className="text-sm font-bold">€{hoveredPoint.value.toLocaleString()}</p>
+                  </div>
+                  <div className="w-2 h-2 bg-slate-900 rotate-45 mx-auto -mt-1" />
+                </div>
+              );
+            })()}
           </div>
         </div>
 
@@ -437,9 +574,9 @@ const DashboardHome = () => {
               <h3 className="text-base font-semibold text-gray-900 leading-6">Recent Placements</h3>
               <p className="text-xs font-normal text-gray-500 leading-5">Latest successes</p>
             </div>
-            <button className="flex items-center gap-0.5 text-xs font-semibold text-cyan-900 leading-5">
+            <Link to="/dashboard/placements" className="flex items-center gap-0.5 text-xs font-semibold cursor-pointer text-cyan-900 leading-5">
               View All <ChevronRight size={15} />
-            </button>
+            </Link>
           </div>
           <div className="flex flex-col gap-3.5">
             {placements.slice(0, 3).map((p) => (

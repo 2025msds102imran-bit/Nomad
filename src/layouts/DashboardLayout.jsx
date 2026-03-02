@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import { NotificationProvider, useNotifications } from '../context/NotificationContext';
 import {
   LayoutDashboard,
   ClipboardList,
@@ -19,6 +20,7 @@ import {
   Languages,
 } from 'lucide-react';
 import logo from '../assets/logo.png';
+import { currentUser } from '../data/dummyData';
 
 const sidebarLinks = [
   { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -26,28 +28,35 @@ const sidebarLinks = [
   { to: '/dashboard/bids', icon: Briefcase, label: 'My Bid' },
   { to: '/dashboard/candidates', icon: UserCheck, label: 'Candidates' },
   { to: '/dashboard/profile', icon: User, label: 'Profile' },
-  { to: '/dashboard/chat', icon: MessageSquare, label: 'chat' },
+  { to: '/dashboard/chat', icon: MessageSquare, label: 'Chat' },
   { to: '/dashboard/interviews', icon: Calendar, label: 'Job Interviews' },
   { to: '/dashboard/payments', icon: CreditCard, label: 'Subscription Plan' },
   { to: '/dashboard/support', icon: Headphones, label: 'Support' },
 ];
 
 const pageTitles = {
-  '/dashboard': { title: 'Welcome back, John', subtitle: "Here's your recruitment performance overview.", rating: 4.7 },
+  '/dashboard': { title: `Welcome back, ${currentUser.name}`, subtitle: "Here's your recruitment performance overview.", rating: currentUser.rating },
   '/dashboard/jobs': { title: 'Vacancies', subtitle: 'Browse and apply to available job opportunities' },
   '/dashboard/candidates': { title: 'My Candidates', subtitle: 'Manage and track all your candidates submissions' },
-  '/dashboard/payments': { title: 'Subscription Plan', subtitle: 'Manage your subscription and billing' },
+  '/dashboard/placements': { title: 'Recent Placements', subtitle: 'Latest successes' },
+  '/dashboard/bids': { title: 'My Bid', subtitle: 'View and manage your submitted bids' },
+  '/dashboard/profile': { title: 'Profile', subtitle: 'Manage your recruiter profile and settings' },
+  '/dashboard/chat': { title: 'Chat', subtitle: 'Manage your conversation with company' },
+  '/dashboard/payments': { title: 'Subscription Plan', subtitle: 'View all the subscription plans here' },
+  '/dashboard/notifications': { title: 'Notifications', subtitle: 'Manage your notifications' },
+  '/dashboard/support': { title: 'Support', subtitle: 'Find assistance for managing platform settings, pricing plans, and subscription limits' },
   '/dashboard/settings': { title: 'Settings', subtitle: 'Manage your account settings' },
 };
 
 const langOptions = ['English', 'Spanish', 'French', 'German', 'Arabic'];
 
-const DashboardLayout = () => {
+const DashboardLayoutInner = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const [language, setLanguage] = useState('English');
   const langRef = useRef(null);
   const location = useLocation();
+  const { unreadCount } = useNotifications();
 
   useEffect(() => {
     const handler = (e) => {
@@ -57,7 +66,10 @@ const DashboardLayout = () => {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
-  const currentPage = pageTitles[location.pathname] || { title: 'Dashboard', subtitle: '' };
+  const isFullWidth = location.pathname === '/dashboard/chat';
+
+  const currentPage = pageTitles[location.pathname]
+    || (location.pathname.startsWith('/dashboard/company/') ? { title: 'Company Profile', subtitle: 'View company details and information' } : { title: 'Dashboard', subtitle: '' });
 
   const isActive = (path) => {
     if (path === '/dashboard') return location.pathname === '/dashboard';
@@ -65,7 +77,7 @@ const DashboardLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex">
+    <div className={`bg-slate-50 flex ${isFullWidth ? 'h-screen overflow-hidden' : 'min-h-screen'}`}>
       {/* Sidebar */}
       <aside
         className={`fixed inset-y-0 left-0 z-50 w-64 bg-linear-to-b from-slate-900 via-cyan-900 to-blue-950 flex flex-col transform transition-transform duration-200 lg:translate-x-0 lg:static lg:inset-0 ${
@@ -79,7 +91,7 @@ const DashboardLayout = () => {
               <img className="w-9 h-9 rounded-[10px]" src={logo} alt="logo" />
               <div className="flex flex-col">
                 <span className="text-white text-xl font-semibold leading-7">Nomad</span>
-                <span className="text-white/60 text-xs font-normal leading-4">Recruiter Company</span>
+                <span className="text-white/60 text-xs font-normal leading-4">{currentUser.company}</span>
               </div>
             </Link>
             <button className="lg:hidden text-white" onClick={() => setSidebarOpen(false)}>
@@ -132,7 +144,7 @@ const DashboardLayout = () => {
       )}
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col min-h-screen">
+      <div className={`flex-1 flex flex-col ${isFullWidth ? 'h-screen overflow-hidden' : 'min-h-screen'}`}>
         {/* Top bar */}
         <header className="h-auto min-h-16 lg:h-24 px-4 sm:px-6 lg:px-8 py-3 lg:py-0 bg-white/80 shadow-[0px_1px_2px_-1px_rgba(0,0,0,0.10),0px_1px_3px_0px_rgba(0,0,0,0.10)] border-b border-gray-200/60 flex items-center justify-between sticky top-0 z-30">
           <div className="h-16 flex flex-col justify-center">
@@ -149,10 +161,15 @@ const DashboardLayout = () => {
               {currentPage.rating && (
                 <div className="hidden sm:flex h-4 items-center gap-0.5">
                   <div className="flex items-center gap-[2.5px]">
-                    {[1, 2, 3, 4].map((i) => (
-                      <Star key={i} size={16} fill="#FDC700" stroke="#FDC700" strokeWidth={1.27} />
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <Star
+                        key={i}
+                        size={i <= Math.round(currentPage.rating) ? 16 : 15}
+                        fill={i <= Math.round(currentPage.rating) ? "#FDC700" : "#D1D5DC"}
+                        stroke={i <= Math.round(currentPage.rating) ? "#FDC700" : "#D1D5DC"}
+                        strokeWidth={1.27}
+                      />
                     ))}
-                    <Star size={15} fill="#D1D5DC" stroke="#D1D5DC" strokeWidth={1.27} />
                   </div>
                   <span className="text-gray-900 text-xs font-semibold leading-4">{currentPage.rating}</span>
                 </div>
@@ -164,10 +181,12 @@ const DashboardLayout = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <button className="size-10 relative rounded-xl flex items-center justify-center">
+            <Link to="/dashboard/notifications" className="size-10 relative rounded-xl flex items-center justify-center">
               <Bell size={20} stroke="#4A5565" />
-              <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-[#FF2056] rounded-full ring-2 ring-white" />
-            </button>
+              {unreadCount > 0 && (
+                <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-[#FF2056] rounded-full ring-2 ring-white" />
+              )}
+            </Link>
             <div className="relative" ref={langRef}>
               <button
                 className="hidden sm:flex w-28 h-10 pl-4 bg-white rounded-[10px] outline-[1.3px] outline-gray-200 items-center gap-2"
@@ -197,8 +216,8 @@ const DashboardLayout = () => {
         </header>
 
         {/* Page content */}
-        <main className="flex-1 bg-linear-to-b from-slate-50 via-slate-100 to-slate-200">
-          <div className="px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 lg:pt-8 pb-4 sm:pb-6 lg:pb-8 flex flex-col gap-4 sm:gap-6">
+        <main className={`flex-1 bg-linear-to-b from-slate-50 via-slate-100 to-slate-200 ${isFullWidth ? 'flex flex-col overflow-hidden' : ''}`}>
+          <div className={`flex flex-col ${isFullWidth ? 'flex-1 min-h-0' : 'gap-4 sm:gap-6 px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 lg:pt-8 pb-4 sm:pb-6 lg:pb-8'}`}>
             <Outlet />
           </div>
         </main>
@@ -206,5 +225,11 @@ const DashboardLayout = () => {
     </div>
   );
 };
+
+const DashboardLayout = () => (
+  <NotificationProvider>
+    <DashboardLayoutInner />
+  </NotificationProvider>
+);
 
 export default DashboardLayout;

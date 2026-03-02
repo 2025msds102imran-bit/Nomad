@@ -1,3 +1,13 @@
+export const currentUser = {
+  name: "John",
+  fullName: "John Doe",
+  email: "john@nomad.io",
+  company: "Recruiter Company",
+  rating: 4.7,
+  role: "recruiter",
+  avatar: "JD",
+};
+
 export const users = [
   { id: 1, name: "Sarah Mitchell", email: "sarah.mitchell@gmail.com", role: "candidate", avatar: "SM", status: "Active" },
   { id: 2, name: "James Chen", email: "james.chen@outlook.com", role: "candidate", avatar: "JC", status: "Active" },
@@ -75,11 +85,13 @@ export const recentActivity = [
 ];
 
 export const placements = [
-  { id: 1, candidateName: "Alex Thompson", role: "Senior Developer", company: "TechCorp", salary: "€85K", time: "2h ago", status: "Completed" },
-  { id: 2, candidateName: "Maria Garcia", role: "Data Scientist", company: "AI Labs", salary: "€92K", time: "5h ago", status: "Completed" },
-  { id: 3, candidateName: "James Brown", role: "Product Manager", company: "StartupX", salary: "€78K", time: "1d ago", status: "Completed" },
-  { id: 4, candidateName: "Emma Wilson", role: "Full Stack Engineer", company: "Vercel", salary: "€110K", time: "3d ago", status: "Completed" },
-  { id: 5, candidateName: "David Park", role: "UX Designer", company: "Figma", salary: "€72K", time: "5d ago", status: "Completed" },
+  { id: 1, candidateName: "Sarah Johnson", role: "Senior Developer", company: "TechCorp", salary: "$80K", time: "2h ago", status: "In Progress" },
+  { id: 2, candidateName: "Sarah", role: "Data Scientist", company: "AI Labs", salary: "$80K", time: "2h ago", status: "Completed" },
+  { id: 3, candidateName: "Michelle", role: "Product Manager", company: "InnovateTech", salary: "$80K", time: "2h ago", status: "Completed" },
+  { id: 4, candidateName: "John", role: "Data Scientist", company: "DesignHub", salary: "$80K", time: "2h ago", status: "In Progress" },
+  { id: 5, candidateName: "Sarah Micheal", role: "Senior Developer", company: "CloudTech", salary: "$80K", time: "2h ago", status: "In Progress" },
+  { id: 6, candidateName: "Doe", role: "Data Scientist", company: "WebSolutions", salary: "$80K", time: "2h ago", status: "Completed" },
+  { id: 7, candidateName: "Jack", role: "Senior Developer", company: "ServerPro", salary: "$80K", time: "2h ago", status: "In Progress" },
 ];
 
 export const interviews = [
@@ -175,6 +187,21 @@ export const candidateTableData = [
   { id: 4, jobName: "Frontend Developer", candidateName: "Teja Patel", seen: false, spoke: false, timePeriod: "Parttime", hourlyPrice: "$600", hiringPrice: "$600", expectedSalary: "$600", description: "A front-end developer is" },
   { id: 5, jobName: "Frontend Developer", candidateName: "Teja Patel", seen: false, spoke: false, timePeriod: "Fulltime", hourlyPrice: "$600", hiringPrice: "$600", expectedSalary: "$600", description: "A front-end developer is" },
   { id: 6, jobName: "Frontend Developer", candidateName: "Teja Patel", seen: false, spoke: false, timePeriod: "Parttime", hourlyPrice: "$600", hiringPrice: "$600", expectedSalary: "$600", description: "A front-end developer is" },
+];
+
+export const myBids = [
+  { id: 1, title: "Senior Backend Developer", bidder: "John Doe", company: "TechCorp Netherlands", rating: 4, type: "fulltime", hours: 40, amount: "€4,500", rawAmount: 4500, status: "Pending" },
+  { id: 2, title: "Data Scientist", bidder: "Sara", company: "Analytics Pro", rating: 4, type: "fulltime", hours: 40, amount: "€5,800", rawAmount: 5800, status: "Won" },
+  { id: 3, title: "DevOps Engineer", bidder: "Johsnon", company: "CloudFirst", rating: 4, type: "fulltime", hours: 40, amount: "€5,200", rawAmount: 5200, status: "Won" },
+  { id: 4, title: "Frontend Developer", bidder: "Franklin", company: "WebSolutions Inc", rating: 5, type: "fulltime", hours: 40, amount: "€4,800", rawAmount: 4800, status: "Active" },
+  { id: 5, title: "Full Stack Developer", bidder: "Michey", company: "TechStart", rating: 4, type: "fulltime", hours: 40, amount: "€6,200", rawAmount: 6200, status: "Pending" },
+];
+
+export const bidStats = [
+  { label: "Total Bids", value: 7, change: "+2", pct: "12%", iconColor: "#6366F1", bgColor: "bg-indigo-500/10" },
+  { label: "Active Bids", value: 3, change: "+1", pct: "8%", iconColor: "#EC4899", bgColor: "bg-pink-500/10" },
+  { label: "Won Bids", value: 2, change: "+1", pct: "15%", iconColor: "#10B981", bgColor: "bg-emerald-500/10" },
+  { label: "Pending Bids", value: 1, change: "0", pct: "15%", iconColor: "#F59E0B", bgColor: "bg-amber-500/10" },
 ];
 
 export const stats = {
