@@ -28,35 +28,39 @@ export const companies = [
 ];
 
 export const jobs = [
-  { id: 1, title: "Senior React Developer", company: "Stripe", location: "Remote", budget: "$8,000 - $12,000", candidates: 5, status: "Active", posted: "Feb 20, 2026" },
-  { id: 2, title: "Product Manager", company: "Notion", location: "London, UK", budget: "$6,000 - $10,000", candidates: 3, status: "Active", posted: "Feb 18, 2026" },
-  { id: 3, title: "UX Designer", company: "Figma", location: "New York, US", budget: "$5,000 - $8,000", candidates: 7, status: "Active", posted: "Feb 15, 2026" },
-  { id: 4, title: "DevOps Engineer", company: "Vercel", location: "Berlin, DE", budget: "$7,000 - $11,000", candidates: 2, status: "Draft", posted: "Feb 14, 2026" },
-  { id: 5, title: "Full Stack Engineer", company: "Linear", location: "Remote", budget: "$9,000 - $14,000", candidates: 6, status: "Active", posted: "Feb 12, 2026" },
-  { id: 6, title: "Data Scientist", company: "Coinbase", location: "San Francisco, US", budget: "$10,000 - $15,000", candidates: 4, status: "Active", posted: "Feb 10, 2026" },
-  { id: 7, title: "iOS Developer", company: "Stripe", location: "Remote", budget: "$7,500 - $11,000", candidates: 1, status: "Closed", posted: "Feb 5, 2026" },
-  { id: 8, title: "Marketing Lead", company: "Notion", location: "New York, US", budget: "$5,000 - $9,000", candidates: 3, status: "Active", posted: "Feb 3, 2026" },
+  { id: 1, title: "Senior React Developer", company: "Stripe", location: "Remote", budget: "$8,000 - $12,000", candidates: 5, status: "Active", posted: "Feb 20, 2026", category: "Technology", level: "Expert Level", country: "Netherlands" },
+  { id: 2, title: "Product Manager", company: "Notion", location: "London, UK", budget: "$6,000 - $10,000", candidates: 3, status: "Active", posted: "Feb 18, 2026", category: "Technology", level: "Mid Level", country: "United Kingdom" },
+  { id: 3, title: "UX Designer", company: "Figma", location: "New York, US", budget: "$5,000 - $8,000", candidates: 7, status: "Active", posted: "Feb 15, 2026", category: "Marketing", level: "Mid Level", country: "Netherlands" },
+  { id: 4, title: "DevOps Engineer", company: "Vercel", location: "Berlin, DE", budget: "$7,000 - $11,000", candidates: 2, status: "Draft", posted: "Feb 14, 2026", category: "Technology", level: "Expert Level", country: "Germany" },
+  { id: 5, title: "Full Stack Engineer", company: "Linear", location: "Remote", budget: "$9,000 - $14,000", candidates: 6, status: "Active", posted: "Feb 12, 2026", category: "Technology", level: "Mid Level", country: "Netherlands" },
+  { id: 6, title: "Data Scientist", company: "Coinbase", location: "San Francisco, US", budget: "$10,000 - $15,000", candidates: 4, status: "Active", posted: "Feb 10, 2026", category: "Technology", level: "Entry Level", country: "Germany" },
+  { id: 7, title: "iOS Developer", company: "Stripe", location: "Remote", budget: "$7,500 - $11,000", candidates: 1, status: "Closed", posted: "Feb 5, 2026", category: "Technology", level: "Mid Level", country: "France" },
+  { id: 8, title: "Marketing Lead", company: "Notion", location: "New York, US", budget: "$5,000 - $9,000", candidates: 3, status: "Active", posted: "Feb 3, 2026", category: "Marketing", level: "Expert Level", country: "Netherlands" },
+  { id: 9, title: "Financial Analyst", company: "Stripe", location: "Amsterdam, NL", budget: "$6,000 - $9,000", candidates: 2, status: "Active", posted: "Feb 1, 2026", category: "Finance", level: "Entry Level", country: "Netherlands" },
+  { id: 10, title: "Sales Manager", company: "Vercel", location: "Paris, FR", budget: "$5,500 - $8,500", candidates: 1, status: "Active", posted: "Jan 28, 2026", category: "Sales", level: "Mid Level", country: "France" },
+  { id: 11, title: "Operations Coordinator", company: "Linear", location: "Brussels, BE", budget: "$4,000 - $6,000", candidates: 3, status: "Active", posted: "Jan 25, 2026", category: "Operations", level: "Entry Level", country: "Belgium" },
+  { id: 12, title: "Finance Director", company: "Coinbase", location: "Amsterdam, NL", budget: "$12,000 - $18,000", candidates: 1, status: "Active", posted: "Jan 22, 2026", category: "Finance", level: "Expert Level", country: "Netherlands" },
 ];
 
 export const candidates = [
-  { id: 1, name: "Sarah Mitchell", role: "UX Designer", recruiter: "DesignHire Co", fee: "$6,500", status: "Under Review", experience: "5 years", location: "New York, US" },
-  { id: 2, name: "James Chen", role: "Senior React Developer", recruiter: "TechRecruit Ltd", fee: "$10,000", status: "Interview", experience: "7 years", location: "Remote" },
-  { id: 3, name: "Maria Garcia", role: "Product Manager", recruiter: "PM Talent Agency", fee: "$8,000", status: "Offer Sent", experience: "6 years", location: "London, UK" },
-  { id: 4, name: "Alex Kim", role: "DevOps Engineer", recruiter: "CloudHire", fee: "$9,500", status: "Under Review", experience: "4 years", location: "Berlin, DE" },
-  { id: 5, name: "Emma Wilson", role: "Full Stack Engineer", recruiter: "TechRecruit Ltd", fee: "$11,000", status: "Hired", experience: "8 years", location: "Remote" },
-  { id: 6, name: "David Brown", role: "Data Scientist", recruiter: "GlobalStaff Inc", fee: "$12,000", status: "Under Review", experience: "5 years", location: "San Francisco, US" },
-  { id: 7, name: "Sophie Taylor", role: "iOS Developer", recruiter: "TechRecruit Ltd", fee: "$9,000", status: "Interview", experience: "4 years", location: "Remote" },
-  { id: 8, name: "Ryan Patel", role: "Marketing Lead", recruiter: "GlobalStaff Inc", fee: "$7,500", status: "Offer Sent", experience: "6 years", location: "New York, US" },
+  { id: 1, name: "Sarah Mitchell", role: "UX Designer", recruiter: "DesignHire Co", fee: "$6,500", status: "Under Review", experience: "5 years", location: "New York, US", expectedSalary: "$65k" },
+  { id: 2, name: "James Chen", role: "Senior React Developer", recruiter: "TechRecruit Ltd", fee: "$10,000", status: "Interview", experience: "7 years", location: "Remote", expectedSalary: "$95k" },
+  { id: 3, name: "Maria Garcia", role: "Product Manager", recruiter: "PM Talent Agency", fee: "$8,000", status: "Offer Sent", experience: "6 years", location: "London, UK", expectedSalary: "$80k" },
+  { id: 4, name: "Alex Kim", role: "DevOps Engineer", recruiter: "CloudHire", fee: "$9,500", status: "Under Review", experience: "4 years", location: "Berlin, DE", expectedSalary: "$72k" },
+  { id: 5, name: "Emma Wilson", role: "Full Stack Engineer", recruiter: "TechRecruit Ltd", fee: "$11,000", status: "Hired", experience: "8 years", location: "Remote", expectedSalary: "$110k" },
+  { id: 6, name: "David Brown", role: "Data Scientist", recruiter: "GlobalStaff Inc", fee: "$12,000", status: "Under Review", experience: "5 years", location: "San Francisco, US", expectedSalary: "$92k" },
+  { id: 7, name: "Sophie Taylor", role: "iOS Developer", recruiter: "TechRecruit Ltd", fee: "$9,000", status: "Interview", experience: "4 years", location: "Remote", expectedSalary: "$78k" },
+  { id: 8, name: "Ryan Patel", role: "Marketing Lead", recruiter: "GlobalStaff Inc", fee: "$7,500", status: "Offer Sent", experience: "6 years", location: "New York, US", expectedSalary: "$70k" },
 ];
 
 export const payments = [
-  { id: 1, description: "Full Stack Engineer - Emma Wilson", amount: "$11,000", date: "Feb 25, 2026", status: "Completed", type: "out" },
-  { id: 2, description: "UX Designer - Sarah Mitchell", amount: "$6,500", date: "Feb 22, 2026", status: "In Escrow", type: "escrow" },
-  { id: 3, description: "Product Manager - Maria Garcia", amount: "$8,000", date: "Feb 18, 2026", status: "In Escrow", type: "escrow" },
-  { id: 4, description: "Senior React Developer - James Chen", amount: "$10,000", date: "Feb 15, 2026", status: "Completed", type: "out" },
-  { id: 5, description: "DevOps Engineer - Alex Kim", amount: "$9,500", date: "Feb 10, 2026", status: "In Escrow", type: "escrow" },
-  { id: 6, description: "iOS Developer - Sophie Taylor", amount: "$9,000", date: "Feb 5, 2026", status: "Completed", type: "out" },
-  { id: 7, description: "Data Scientist - David Brown", amount: "$12,000", date: "Feb 1, 2026", status: "Refunded", type: "refund" },
+  { id: 1, description: "Full Stack Engineer - Emma Wilson", amount: "$11,000", rawAmount: 11000, date: "Feb 25, 2026", status: "Completed", type: "out" },
+  { id: 2, description: "UX Designer - Sarah Mitchell", amount: "$6,500", rawAmount: 6500, date: "Feb 22, 2026", status: "In Escrow", type: "escrow" },
+  { id: 3, description: "Product Manager - Maria Garcia", amount: "$8,000", rawAmount: 8000, date: "Feb 18, 2026", status: "In Escrow", type: "escrow" },
+  { id: 4, description: "Senior React Developer - James Chen", amount: "$10,000", rawAmount: 10000, date: "Feb 15, 2026", status: "Completed", type: "out" },
+  { id: 5, description: "DevOps Engineer - Alex Kim", amount: "$9,500", rawAmount: 9500, date: "Feb 10, 2026", status: "In Escrow", type: "escrow" },
+  { id: 6, description: "iOS Developer - Sophie Taylor", amount: "$9,000", rawAmount: 9000, date: "Feb 5, 2026", status: "Completed", type: "out" },
+  { id: 7, description: "Data Scientist - David Brown", amount: "$12,000", rawAmount: 12000, date: "Feb 1, 2026", status: "Refunded", type: "refund" },
 ];
 
 export const recentActivity = [
@@ -68,6 +72,109 @@ export const recentActivity = [
   { id: 6, action: "New recruiter joined", detail: "FinanceFirst applied for verification", time: "3 days ago" },
   { id: 7, action: "Candidate withdrawn", detail: "iOS Developer role - by applicant request", time: "4 days ago" },
   { id: 8, action: "Payment held in escrow", detail: "$9,500 for DevOps Engineer placement", time: "5 days ago" },
+];
+
+export const placements = [
+  { id: 1, candidateName: "Alex Thompson", role: "Senior Developer", company: "TechCorp", salary: "€85K", time: "2h ago", status: "Completed" },
+  { id: 2, candidateName: "Maria Garcia", role: "Data Scientist", company: "AI Labs", salary: "€92K", time: "5h ago", status: "Completed" },
+  { id: 3, candidateName: "James Brown", role: "Product Manager", company: "StartupX", salary: "€78K", time: "1d ago", status: "Completed" },
+  { id: 4, candidateName: "Emma Wilson", role: "Full Stack Engineer", company: "Vercel", salary: "€110K", time: "3d ago", status: "Completed" },
+  { id: 5, candidateName: "David Park", role: "UX Designer", company: "Figma", salary: "€72K", time: "5d ago", status: "Completed" },
+];
+
+export const interviews = [
+  { id: 1, candidateName: "Sarah Johnson", initials: "SJ", avatarColor: "bg-indigo-500", date: "Fri, Nov 21", time: "02:00:00 - 03:00:00", status: "Scheduled" },
+  { id: 2, candidateName: "Michael Chen", initials: "MC", avatarColor: "bg-pink-500", date: "Fri, Nov 21", time: "02:00:00 - 03:00:00", status: "Scheduled" },
+  { id: 3, candidateName: "Emma Wilson", initials: "EW", avatarColor: "bg-emerald-500", date: "Fri, Nov 21", time: "02:00:00 - 03:00:00", status: "Scheduled" },
+  { id: 4, candidateName: "James Brown", initials: "JB", avatarColor: "bg-amber-500", date: "Sat, Nov 22", time: "10:00:00 - 11:00:00", status: "Scheduled" },
+  { id: 5, candidateName: "Lisa Wong", initials: "LW", avatarColor: "bg-violet-500", date: "Mon, Nov 24", time: "14:00:00 - 15:00:00", status: "Scheduled" },
+];
+
+export const performanceMetrics = [
+  { label: "Response Time", value: 85, color: "bg-indigo-500", textColor: "text-indigo-500", shadow: "shadow-[0_0_10px_rgba(99,102,241,0.25)]" },
+  { label: "Quality", value: 92, color: "bg-emerald-500", textColor: "text-emerald-500", shadow: "shadow-[0_0_10px_rgba(16,185,129,0.25)]" },
+  { label: "Satisfaction", value: 88, color: "bg-pink-500", textColor: "text-pink-500", shadow: "shadow-[0_0_10px_rgba(236,72,153,0.25)]" },
+  { label: "Speed", value: 78, color: "bg-amber-500", textColor: "text-amber-500", shadow: "shadow-[0_0_10px_rgba(245,158,11,0.25)]" },
+];
+
+export const revenueData = [
+  { month: "Jan", value: 32000 },
+  { month: "Feb", value: 35000 },
+  { month: "Mar", value: 34000 },
+  { month: "Apr", value: 42000 },
+  { month: "May", value: 39000 },
+  { month: "Jun", value: 58000 },
+];
+
+export const topCountries = [
+  { flag: "🇳🇱", name: "Netherlands", code: "NL", growthPct: "+18%" },
+  { flag: "🇩🇪", name: "Germany", code: "DE", growthPct: "+12%" },
+  { flag: "🇬🇧", name: "United Kingdom", code: "GB", growthPct: "+8%" },
+  { flag: "🇫🇷", name: "France", code: "FR", growthPct: "+15%" },
+  { flag: "🇧🇪", name: "Belgium", code: "BE", growthPct: "+6%" },
+];
+
+export const dashboardActivity = [
+  { id: 1, text: "New placement: Alex Thompson at TechCorp", time: "5 min ago" },
+  { id: 2, text: "Interview scheduled with Maria Garcia", time: "23 min ago" },
+  { id: 3, text: "Offer accepted by James Brown", time: "1 hour ago" },
+  { id: 4, text: "12 new applications received", time: "2 hours ago" },
+];
+
+export const vacancyCards = [
+  {
+    id: 1,
+    company: "Company 1",
+    rating: 4,
+    location: "Pakwan Cross Road, Bodakdev, Ahmedabad, Gujarat, India (5.1 km)",
+    salary: "$1200",
+    title: "QA - Mid Level / Specialist",
+    type: "Fulltime/Partime or Both",
+    avatarGradient: "from-indigo-400 to-blue-500",
+  },
+  {
+    id: 2,
+    company: "Consultancy Services",
+    rating: 4,
+    location: "TCS, Gandhinagar, Gujarat, India (54.3 km)",
+    salary: "$400",
+    title: "Frontend Developer - Intern / Trainee",
+    type: "Fulltime/Partime or Both",
+    avatarGradient: "from-emerald-400 to-teal-500",
+  },
+  {
+    id: 3,
+    company: "Consultancy Services",
+    rating: 4,
+    location: "TCS, Gandhinagar, Gujarat, India (54.3 km)",
+    salary: "$600",
+    title: "Backened Developer - Intern / Trainee",
+    type: "Fulltime/Partime or Both",
+    avatarGradient: "from-pink-400 to-rose-500",
+  },
+];
+
+export const vacancyStats = [
+  { label: "Open Vacancies", value: 47, change: "+5", pct: "12%", iconColor: "#6366F1", bgColor: "bg-indigo-500/10" },
+  { label: "Matching Vacancies", value: 29, change: "+156", pct: "14%", iconColor: "#EC4899", bgColor: "bg-pink-500/10" },
+  { label: "Active Bids", value: 14, change: "+23", pct: "23%", iconColor: "#10B981", bgColor: "bg-emerald-500/10" },
+  { label: "Nearby Jobs", value: 11, change: "+€67K", pct: "15%", iconColor: "#F59E0B", bgColor: "bg-amber-500/10" },
+];
+
+export const candidateStats = [
+  { label: "Total Candidates", value: 47, change: "+5", pct: "12%", iconColor: "#6366F1", bgColor: "bg-indigo-500/10" },
+  { label: "Candidates Submitted", value: 29, change: "+156", pct: "14%", iconColor: "#EC4899", bgColor: "bg-pink-500/10" },
+  { label: "Active Interviews", value: 11, change: "+€67K", pct: "15%", iconColor: "#10B981", bgColor: "bg-emerald-500/10" },
+  { label: "Under Review", value: 14, change: "+23", pct: "23%", iconColor: "#F59E0B", bgColor: "bg-amber-500/10" },
+];
+
+export const candidateTableData = [
+  { id: 1, jobName: "Frontend Developer", candidateName: "Teja Patel", seen: false, spoke: false, timePeriod: "Fulltime", hourlyPrice: "$600", hiringPrice: "$600", expectedSalary: "$600", description: "A front-end developer is" },
+  { id: 2, jobName: "Frontend Developer", candidateName: "Teja Patel", seen: false, spoke: false, timePeriod: "Parttime", hourlyPrice: "$600", hiringPrice: "$600", expectedSalary: "$600", description: "A front-end developer is" },
+  { id: 3, jobName: "Frontend Developer", candidateName: "Teja Patel", seen: false, spoke: false, timePeriod: "Fulltime", hourlyPrice: "$600", hiringPrice: "$600", expectedSalary: "$600", description: "A front-end developer is" },
+  { id: 4, jobName: "Frontend Developer", candidateName: "Teja Patel", seen: false, spoke: false, timePeriod: "Parttime", hourlyPrice: "$600", hiringPrice: "$600", expectedSalary: "$600", description: "A front-end developer is" },
+  { id: 5, jobName: "Frontend Developer", candidateName: "Teja Patel", seen: false, spoke: false, timePeriod: "Fulltime", hourlyPrice: "$600", hiringPrice: "$600", expectedSalary: "$600", description: "A front-end developer is" },
+  { id: 6, jobName: "Frontend Developer", candidateName: "Teja Patel", seen: false, spoke: false, timePeriod: "Parttime", hourlyPrice: "$600", hiringPrice: "$600", expectedSalary: "$600", description: "A front-end developer is" },
 ];
 
 export const stats = {

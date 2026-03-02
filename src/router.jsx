@@ -8,18 +8,16 @@ import LandingPage from './pages/commonPages/LandingPage';
 import AboutPage from './pages/commonPages/AboutPage';
 import ContactPage from './pages/commonPages/ContactPage';
 
-import Login from './pages/website/Login';
-import Signup from './pages/website/Signup';
-import ForgotPassword from './pages/website/ForgotPassword';
-import VerifyEmail from './pages/website/VerifyEmail';
-import NotFound from './pages/website/NotFound';
-import Unauthor from './pages/website/Unauthor';
+import Login from './website/Login';
+import Signup from './website/Signup';
+import ForgotPassword from './website/ForgotPassword';
+import VerifyEmail from './website/VerifyEmail';
+import NotFound from './website/NotFound';
+import Unauthor from './website/Unauthor';
 
 import DashboardHome from './pages/companyRole/DashboardHome';
 import JobsPage from './pages/companyRole/JobsPage';
 import CandidatesPage from './pages/companyRole/CandidatesPage';
-import PaymentsPage from './pages/companyRole/PaymentsPage';
-import SettingsPage from './pages/companyRole/SettingsPage';
 
 const AppRouter = () => {
   return (
@@ -47,8 +45,6 @@ const AppRouter = () => {
         <Route index element={<DashboardHome />} />
         <Route path="jobs" element={<JobsPage />} />
         <Route path="candidates" element={<CandidatesPage />} />
-        <Route path="payments" element={<PaymentsPage />} />
-        <Route path="settings" element={<SettingsPage />} />
       </Route>
 
       {/* 404 catch-all */}

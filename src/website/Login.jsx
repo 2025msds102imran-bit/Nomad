@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Input, Button } from "../../components/ui";
-import logo from "../../assets/logo.png";
+import { Input, Button } from "../components/ui";
+import logo from "../assets/logo.png";
 
 const roles = ["Company", "Recruiter", "Agency"];
 

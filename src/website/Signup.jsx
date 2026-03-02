@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Input, Select, Button } from "../../components/ui";
+import { Input, Select, Button } from "../components/ui";
 
 const registrationOptions = [
   { value: "2019/123456/07", label: "2019/123456/07" },
