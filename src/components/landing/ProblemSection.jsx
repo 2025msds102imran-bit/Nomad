@@ -103,13 +103,13 @@ const ProblemSection = () => {
             <span className="text-white/95 text-xs font-medium uppercase leading-4 tracking-wide">The Challenge</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white leading-tight md:leading-[79.20px] shadow-[0px_25px_50px_0px_rgba(0,0,0,0.15)]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white leading-tight md:leading-[79.20px] ">
             Problem with Traditional Recruitment
           </h2>
 
           <div className="w-32 h-2 rounded-full shadow-2xl" style={{ background: 'linear-gradient(180deg, transparent 0%, white 50%, transparent 100%)' }} />
 
-          <p className="text-base sm:text-lg md:text-xl text-white/90 leading-relaxed md:leading-10 max-w-[768px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.15)]">
+          <p className="text-base sm:text-lg md:text-xl text-white/90 leading-relaxed md:leading-10 max-w-[768px] ">
             Hidden fees, inflexible terms, and zero transparency leave both companies and recruiters frustrated.
           </p>
         </div>

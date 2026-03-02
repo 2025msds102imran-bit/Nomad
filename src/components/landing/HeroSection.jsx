@@ -5,7 +5,8 @@ import Navbar from "../Navbar";
 const HeroSection = () => {
   return (
     <section className="relative text-white overflow-hidden">
-      <img src={heroImg} alt="" className="absolute inset-0 w-full h-full object-cover brightness-[0.3]" />
+      <img src={heroImg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-slate-900/75" />
 
       <div className="relative max-w-[1280px] mx-auto px-6 lg:px-8 pt-8 pb-16 lg:pb-24">
         <Navbar />
@@ -130,9 +131,9 @@ const HeroSection = () => {
             ].map((item) => (
               <div
                 key={item.label}
-                className="relative w-full h-28 bg-white/10 rounded-2xl outline-[1.30px] outline-solid outline-white/20 hover:-translate-y-0.5 transition"
+                className="relative w-full h-28 bg-white/10 rounded-2xl outline-[1.30px] outline-solid outline-white/10 hover:-translate-y-0.5 transition"
               >
-                <div className="absolute inset-[1.30px] bg-linear-to-br from-white/5 to-black/0 rounded-2xl" />
+                <div className="absolute inset-[1.30px] bg-linear-to-br from-white/10 to-black/0 rounded-2xl" />
                 <div className="relative w-full h-full px-6 inline-flex justify-between items-center">
                   <div className="flex flex-col gap-1">
                     <span className="text-white text-4xl font-semibold leading-10">{item.number}</span>
