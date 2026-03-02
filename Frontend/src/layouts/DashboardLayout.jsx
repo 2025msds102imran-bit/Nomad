@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { NotificationProvider, useNotifications } from '../context/NotificationContext';
+import { useAuth } from '../context/AuthContext';
 import {
   LayoutDashboard,
   ClipboardList,
@@ -34,8 +35,7 @@ const sidebarLinks = [
   { to: '/dashboard/support', icon: Headphones, label: 'Support' },
 ];
 
-const pageTitles = {
-  '/dashboard': { title: `Welcome back, ${currentUser.name}`, subtitle: "Here's your recruitment performance overview.", rating: currentUser.rating },
+const staticPageTitles = {
   '/dashboard/jobs': { title: 'Vacancies', subtitle: 'Browse and apply to available job opportunities' },
   '/dashboard/candidates': { title: 'My Candidates', subtitle: 'Manage and track all your candidates submissions' },
   '/dashboard/placements': { title: 'Recent Placements', subtitle: 'Latest successes' },
@@ -56,7 +56,14 @@ const DashboardLayoutInner = () => {
   const [language, setLanguage] = useState('English');
   const langRef = useRef(null);
   const location = useLocation();
+  const navigate = useNavigate();
   const { unreadCount } = useNotifications();
+  const { user, logout } = useAuth();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/auth/login', { replace: true });
+  };
 
   useEffect(() => {
     const handler = (e) => {
@@ -67,6 +74,11 @@ const DashboardLayoutInner = () => {
   }, []);
 
   const isFullWidth = location.pathname === '/dashboard/chat';
+
+  const pageTitles = {
+    '/dashboard': { title: `Welcome back, ${user?.companyName || 'User'}`, subtitle: "Here's your recruitment performance overview.", rating: currentUser.rating },
+    ...staticPageTitles,
+  };
 
   const currentPage = pageTitles[location.pathname]
     || (location.pathname.startsWith('/dashboard/company/') ? { title: 'Company Profile', subtitle: 'View company details and information' } : { title: 'Dashboard', subtitle: '' });
@@ -125,13 +137,13 @@ const DashboardLayoutInner = () => {
 
         {/* Footer */}
         <div className="w-64 h-20 px-4 pt-4 border-t-[1.3px] border-white/10">
-          <Link
-            to="/"
-            className="h-12 pl-4 rounded-[10px] inline-flex items-center gap-3 text-white/70 hover:bg-white/5 hover:text-white transition"
+          <button
+            onClick={handleLogout}
+            className="h-12 pl-4 rounded-[10px] inline-flex items-center gap-3 text-white/70 hover:bg-white/5 hover:text-white transition cursor-pointer w-full"
           >
             <LogOut size={20} strokeWidth={1.67} />
             <span className="text-base font-medium leading-6">Logout</span>
-          </Link>
+          </button>
         </div>
       </aside>
 

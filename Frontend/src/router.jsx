@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import PublicLayout from './layouts/PublicLayout';
 import AuthLayout from './layouts/AuthLayout';
 import DashboardLayout from './layouts/DashboardLayout';
+import ProtectedRoute from './components/ProtectedRoute';
 
 import LandingPage from './pages/commonPages/LandingPage';
 import AboutPage from './pages/commonPages/AboutPage';
@@ -49,7 +50,7 @@ const AppRouter = () => {
       <Route path="/unauthorized" element={<Unauthor />} />
 
       {/* Company dashboard routes */}
-      <Route path="/dashboard" element={<DashboardLayout />}>
+      <Route path="/dashboard" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
         <Route index element={<DashboardHome />} />
         <Route path="jobs" element={<JobsPage />} />
         <Route path="candidates" element={<CandidatesPage />} />

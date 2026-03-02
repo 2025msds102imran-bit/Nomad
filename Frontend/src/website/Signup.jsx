@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Input, Select, Button } from "../components/ui";
+import { useAuth } from "../context/AuthContext";
 
 const registrationOptions = [
   { value: "2019/123456/07", label: "2019/123456/07" },
@@ -15,10 +16,24 @@ const SignupPage = () => {
   const [contactNumber, setContactNumber] = useState("");
   const [location, setLocation] = useState("");
   const [registrationNo, setRegistrationNo] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const { register } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ companyName, email, password, contactNumber, location, registrationNo });
+    setError("");
+    setIsLoading(true);
+    try {
+      await register({ companyName, email, password, contactNumber, location, registrationNo });
+      navigate("/dashboard", { replace: true });
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -37,6 +52,11 @@ const SignupPage = () => {
         </div>
 
         <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+          {error && (
+            <div className="px-4 py-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
+              {error}
+            </div>
+          )}
           <Input
             label="Company Name"
             id="signup-company"
@@ -98,8 +118,8 @@ const SignupPage = () => {
               Search for your company using the registration number (e.g., 2019/123456/07)
             </p>
           </div>
-          <Button type="submit" size="md" fullWidth>
-            Save and Next
+          <Button type="submit" size="md" fullWidth disabled={isLoading}>
+            {isLoading ? "Creating Account..." : "Save and Next"}
           </Button>
         </form>
       </div>

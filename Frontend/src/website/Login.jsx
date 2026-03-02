@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Input, Button } from "../components/ui";
+import { useAuth } from "../context/AuthContext";
 import logo from "../assets/logo.png";
 
 const roles = ["Company", "Recruiter", "Agency"];
@@ -9,10 +10,26 @@ const LoginPage = () => {
   const [selectedRole, setSelectedRole] = useState("Company");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/dashboard";
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ selectedRole, email, password });
+    setError("");
+    setIsLoading(true);
+    try {
+      await login(email, password, selectedRole);
+      navigate(from, { replace: true });
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -33,6 +50,11 @@ const LoginPage = () => {
         </div>
 
         <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
+          {error && (
+            <div className="px-4 py-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
+              {error}
+            </div>
+          )}
           <div>
             <p className="text-sm font-medium text-slate-900 mb-2">Select Role</p>
             <div className="flex justify-between">
@@ -83,8 +105,8 @@ const LoginPage = () => {
             </div>
           </div>
 
-          <Button type="submit" fullWidth>
-            Sign In
+          <Button type="submit" fullWidth disabled={isLoading}>
+            {isLoading ? "Signing In..." : "Sign In"}
           </Button>
 
           <div className="flex items-center gap-4">
