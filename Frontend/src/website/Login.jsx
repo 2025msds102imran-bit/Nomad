@@ -4,10 +4,7 @@ import { Input, Button } from "../components/ui";
 import { useAuth } from "../context/AuthContext";
 import logo from "../assets/logo.png";
 
-const roles = ["Company", "Recruiter", "Agency", "Admin"];
-
 const LoginPage = () => {
-  const [selectedRole, setSelectedRole] = useState("Company");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -23,10 +20,11 @@ const LoginPage = () => {
     setError("");
     setIsLoading(true);
     try {
-      await login(email, password, selectedRole);
-      const basePath = selectedRole === "Admin"
+      const user = await login(email, password);
+      const role = user?.role || "Company";
+      const basePath = role === "Admin"
         ? "/admin"
-        : selectedRole === "Company"
+        : role === "Company"
           ? "/dashboard"
           : "/recruiter";
       const target = (from && from.startsWith(basePath)) ? from : basePath;
@@ -40,7 +38,7 @@ const LoginPage = () => {
 
   return (
     <div className="w-full">
-      <div className="bg-white rounded-2xl p-6 flex flex-col gap-6 shadow-[0px_3.91px_5.87px_-3.91px_rgba(0,0,0,0.10),0px_9.78px_14.66px_-2.93px_rgba(0,0,0,0.10)] outline-[1.27px] outline-gray-200">
+      <div className="bg-white rounded-2xl px-5 sm:p-6 py-6 flex flex-col gap-6 shadow-[0px_3.91px_5.87px_-3.91px_rgba(0,0,0,0.10),0px_9.78px_14.66px_-2.93px_rgba(0,0,0,0.10)] outline-[1.27px] outline-gray-200">
         <div className="flex flex-col items-center gap-2">
           <img
             src={logo}
@@ -61,25 +59,6 @@ const LoginPage = () => {
               {error}
             </div>
           )}
-          <div>
-            <p className="text-sm font-medium text-slate-900 mb-2">Select Role</p>
-            <div className="flex justify-between">
-              {roles.map((role) => (
-                <button
-                  key={role}
-                  type="button"
-                  onClick={() => setSelectedRole(role)}
-                  className={`w-24 h-11 rounded-xl text-xs font-medium transition-colors ${
-                    selectedRole === role
-                      ? "bg-[#25406A] text-white"
-                      : "bg-gray-50 text-gray-500 hover:bg-gray-100"
-                  }`}
-                >
-                  {role}
-                </button>
-              ))}
-            </div>
-          </div>
 
           <Input
             label="Email"
@@ -134,7 +113,7 @@ const LoginPage = () => {
             to="/auth/signup"
             className="text-base font-medium text-cyan-900 hover:underline ml-1"
           >
-            Sign up as company
+            Sign up
           </Link>
         </div>
       </div>

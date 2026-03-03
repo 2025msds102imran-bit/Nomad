@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Input, Select, Button } from "../components/ui";
 import { useAuth } from "../context/AuthContext";
+import logo from "../assets/logo.png";
+
+const roles = ["Company", "Recruiter", "Agency"];
 
 const registrationOptions = [
   { value: "2019/123456/07", label: "2019/123456/07" },
@@ -10,6 +13,7 @@ const registrationOptions = [
 ];
 
 const SignupPage = () => {
+  const [selectedRole, setSelectedRole] = useState("Company");
   const [companyName, setCompanyName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,8 +31,10 @@ const SignupPage = () => {
     setError("");
     setIsLoading(true);
     try {
-      await register({ companyName, email, password, contactNumber, location, registrationNo });
-      navigate("/dashboard", { replace: true });
+      const user = await register({ companyName, email, password, contactNumber, location, registrationNo, role: selectedRole });
+      const role = user?.role || selectedRole;
+      const basePath = role === "Company" ? "/dashboard" : "/recruiter";
+      navigate(basePath, { replace: true });
     } catch (err) {
       setError(err.message);
     } finally {
@@ -38,25 +44,47 @@ const SignupPage = () => {
 
   return (
     <div className="w-full">
-      <div className="bg-white rounded-[20px] p-8 flex flex-col gap-7 shadow-[0px_3.31px_4.97px_-3.31px_rgba(0,0,0,0.10),0px_8.28px_12.42px_-2.48px_rgba(0,0,0,0.10)] outline-[1.07px] outline-gray-200">
-        <div className="text-center">
+      <div className="bg-white rounded-[20px] px-6 sm:px-8 py-6 flex flex-col gap-6 sm:gap-7 shadow-[0px_3.31px_4.97px_-3.31px_rgba(0,0,0,0.10),0px_8.28px_12.42px_-2.48px_rgba(0,0,0,0.10)] outline-[1.07px] outline-gray-200">
+        <div className="flex flex-col items-center gap-2 text-center">
           <h1 className="text-2xl font-semibold leading-8 text-slate-900">
-            Welcome to Nomad Company
+          Welcome to Nomad Recruitment
+
           </h1>
-          <p className="text-xs text-gray-500 mt-1.5">
-            If you already have an account, you can{" "}
+          <p className="text-xs text-gray-500">
+            If you already have an account,{" "}
             <Link to="/auth/login" className="text-cyan-900 font-medium hover:underline">
-              log in here!
+              sign in here
             </Link>
           </p>
         </div>
 
-        <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           {error && (
             <div className="px-4 py-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
               {error}
             </div>
           )}
+
+          <div>
+            <p className="text-sm font-medium text-slate-900 mb-2">Select your role</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full">
+              {roles.map((role) => (
+                <button
+                  key={role}
+                  type="button"
+                  onClick={() => setSelectedRole(role)}
+                  className={`h-11 rounded-xl text-sm font-medium transition-colors ${
+                    selectedRole === role
+                      ? "bg-[#25406A] text-white"
+                      : "bg-gray-50 text-gray-500 hover:bg-gray-100"
+                  }`}
+                >
+                  {role}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <Input
             label="Company Name"
             id="signup-company"

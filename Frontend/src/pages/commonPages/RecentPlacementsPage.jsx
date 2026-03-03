@@ -95,8 +95,8 @@ const RecentPlacementsPage = () => {
 
       {/* Table */}
       <div className="bg-white rounded-2xl outline-[1.30px] outline-gray-100 overflow-hidden">
-        <div>
-          <table className="w-full table-fixed">
+        <div className="overflow-x-auto min-w-0">
+          <table className="w-full min-w-[640px] table-fixed">
             <thead>
               <tr className="bg-gray-200 h-14">
                 <th className="text-left pl-6 pr-3 text-gray-600 text-xs font-semibold leading-4 whitespace-nowrap">

@@ -9,7 +9,12 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/auth/login', { replace: true });
+  };
 
   useEffect(() => {
     if (!langOpen) return;
@@ -89,12 +94,24 @@ const Navbar = () => {
           </div>
 
           {user ? (
-            <button
-              onClick={() => navigate('/dashboard')}
-              className="h-11 px-5 bg-white/95 rounded-2xl flex items-center justify-center hover:bg-white transition"
-            >
-              <span className="text-slate-900 text-sm font-medium leading-5">Dashboard</span>
-            </button>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => {
+                  const role = user?.role || user?.user?.role || 'Company';
+                  const path = role === 'Admin' ? '/admin' : role === 'Company' ? '/dashboard' : '/recruiter';
+                  navigate(path);
+                }}
+                className="h-11 px-5 bg-white/95 rounded-2xl flex items-center justify-center hover:bg-white transition"
+              >
+                <span className="text-slate-900 text-sm font-medium leading-5">Dashboard</span>
+              </button>
+              <button
+                onClick={handleLogout}
+                className="h-11 px-5 rounded-2xl flex items-center justify-center border border-white/30 text-white/90 hover:bg-white/10 transition"
+              >
+                <span className="text-sm font-medium leading-5">Logout</span>
+              </button>
+            </div>
           ) : (
             <button
               onClick={() => navigate('/auth/login')}
@@ -169,12 +186,25 @@ const Navbar = () => {
             </div>
 
             {user ? (
-              <button
-                onClick={() => { navigate('/dashboard'); setMenuOpen(false); }}
-                className="mt-6 w-full h-11 bg-white/95 rounded-2xl flex items-center justify-center"
-              >
-                <span className="text-slate-900 text-sm font-medium leading-5">Dashboard</span>
-              </button>
+              <div className="mt-6 flex flex-col gap-3">
+                <button
+                  onClick={() => {
+                  const role = user?.role || user?.user?.role || 'Company';
+                  const path = role === 'Admin' ? '/admin' : role === 'Company' ? '/dashboard' : '/recruiter';
+                  navigate(path);
+                  setMenuOpen(false);
+                }}
+                  className="w-full h-11 bg-white/95 rounded-2xl flex items-center justify-center"
+                >
+                  <span className="text-slate-900 text-sm font-medium leading-5">Dashboard</span>
+                </button>
+                <button
+                  onClick={() => { handleLogout(); setMenuOpen(false); }}
+                  className="w-full h-11 rounded-2xl flex items-center justify-center border border-white/30 text-white/90"
+                >
+                  <span className="text-sm font-medium leading-5">Logout</span>
+                </button>
+              </div>
             ) : (
               <button
                 onClick={() => { navigate('/auth/login'); setMenuOpen(false); }}

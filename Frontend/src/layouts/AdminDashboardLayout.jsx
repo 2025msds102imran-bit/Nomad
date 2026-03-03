@@ -73,7 +73,7 @@ const AdminDashboardLayoutInner = () => {
     <div className="bg-gray-50 flex min-w-0 overflow-x-hidden min-h-screen w-full">
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-gradient-to-b from-slate-900 via-cyan-900 to-blue-950 flex flex-col transform transition-transform duration-200 lg:translate-x-0 lg:static lg:inset-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-linear-to-b from-slate-900 via-cyan-900 to-blue-950 flex flex-col transform transition-transform duration-200 lg:translate-x-0 lg:static lg:inset-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -128,10 +128,15 @@ const AdminDashboardLayoutInner = () => {
       )}
 
       <div className="flex-1 flex flex-col min-w-0 overflow-x-hidden min-h-screen">
-        <header className="h-20 px-8 py-4 bg-white border-b border-gray-200 flex items-center justify-between sticky top-0 z-30">
-          <div>
+        <header className="h-auto min-h-16 px-4 sm:px-6 lg:px-8 py-4 bg-white border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sticky top-0 z-30">
+          <div className="flex items-center gap-3">
+            <button className="lg:hidden text-gray-600" onClick={() => setSidebarOpen(true)}>
+              <Menu size={22} />
+            </button>
+            <div>
             <h1 className="text-slate-900 text-lg font-semibold leading-7">Dashboard</h1>
             <p className="text-gray-600 text-sm font-normal leading-5">Admin overview and statistics</p>
+          </div>
           </div>
           <div className="flex items-center gap-3">
             <Link to={`${BASE}/notifications`} className="size-9 relative rounded-[10px] flex items-center justify-center">
@@ -142,7 +147,7 @@ const AdminDashboardLayoutInner = () => {
             </Link>
             <div className="relative" ref={langRef}>
               <button
-                className="w-28 h-10 pl-4 bg-white rounded-[10px] outline outline-[1.3px] outline-gray-200 flex items-center gap-2"
+                className="w-28 h-10 pl-4 bg-white rounded-[10px] outline-[1.3px] outline-gray-200 flex items-center gap-2"
                 onClick={() => setLangOpen(!langOpen)}
               >
                 <Languages size={16} stroke="#0F172A" />
@@ -167,7 +172,7 @@ const AdminDashboardLayoutInner = () => {
         </header>
 
         <main className="flex-1 min-w-0 overflow-x-hidden bg-gray-50">
-          <div className="px-8 pt-8 pb-8">
+          <div className="px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 lg:pt-8 pb-4 sm:pb-6 lg:pb-8 overflow-x-hidden">
             <Outlet />
           </div>
         </main>

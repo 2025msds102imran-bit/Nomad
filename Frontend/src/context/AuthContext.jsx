@@ -43,24 +43,27 @@ export const AuthProvider = ({ children }) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({ email, password, role }),
+      body: JSON.stringify({ email, password, ...(role && { role }) }),
     });
 
     const data = await res.json();
     if (!res.ok) throw new Error(data.message || "Login failed");
 
-    const userData = { ...data, role: data.role || role };
+    const userData = { ...data, role: data.role || role || "Company" };
     setUser(userData);
     localStorage.setItem("user", JSON.stringify(userData));
     return userData;
   };
 
   const logout = async () => {
-    await fetch(`${API_BASE}/logout`, {
-      method: "POST",
-      credentials: "include",
-    });
-
+    try {
+      await fetch(`${API_BASE}/logout`, {
+        method: "POST",
+        credentials: "include",
+      });
+    } catch {
+      // Ignore network errors - still clear local state
+    }
     setUser(null);
     localStorage.removeItem("user");
   };

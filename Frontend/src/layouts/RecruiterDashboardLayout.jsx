@@ -13,6 +13,7 @@ import {
   CreditCard,
   Headphones,
   LogOut,
+  CheckCircle,
   Menu,
   X,
   Bell,
@@ -30,6 +31,7 @@ const sidebarLinks = [
   { to: `${BASE}/jobs`, icon: ClipboardList, label: 'Vacancies' },
   { to: `${BASE}/bids`, icon: Briefcase, label: 'My Bid' },
   { to: `${BASE}/candidates`, icon: UserCheck, label: 'Candidates' },
+  { to: `${BASE}/placements`, icon: CheckCircle, label: 'Recent Placements' },
   { to: `${BASE}/profile`, icon: User, label: 'Profile' },
   { to: `${BASE}/chat`, icon: MessageSquare, label: 'Chat' },
   { to: `${BASE}/interviews`, icon: Calendar, label: 'Job Interviews' },
@@ -115,7 +117,7 @@ const RecruiterDashboardLayoutInner = () => {
               <img className="w-9 h-9 rounded-[10px]" src={logo} alt="logo" />
               <div className="flex flex-col">
                 <span className="text-white text-xl font-semibold leading-7">Nomad</span>
-                <span className="text-white/60 text-xs font-normal leading-4">{currentUser.company}</span>
+                <span className="text-white/60 text-xs font-normal leading-4">{user?.role || user?.user?.role || 'Recruiter'}</span>
               </div>
             </Link>
             <button className="lg:hidden text-white" onClick={() => setSidebarOpen(false)}>
