@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import {
   ArrowLeft,
   Star,
@@ -87,6 +87,8 @@ const socialIcons = { facebook: FacebookIcon, twitter: TwitterIcon, instagram: I
 
 const CompanyDetailPage = () => {
   const { id } = useParams();
+  const location = useLocation();
+  const basePath = location.pathname.startsWith("/recruiter") ? "/recruiter" : "/dashboard";
   const card = vacancyCards.find((c) => c.id === Number(id));
   const company = companyDetail;
 
@@ -94,7 +96,7 @@ const CompanyDetailPage = () => {
     <div className="flex flex-col gap-5 min-w-0">
       {/* Back link */}
       <Link
-        to="/dashboard/jobs"
+        to={`${basePath}/jobs`}
         className="inline-flex items-center gap-2 text-cyan-900 text-sm sm:text-base font-medium leading-6 w-fit"
       >
         <ArrowLeft size={20} stroke="#2A4870" />

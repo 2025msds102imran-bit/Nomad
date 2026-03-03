@@ -49,9 +49,10 @@ export const AuthProvider = ({ children }) => {
     const data = await res.json();
     if (!res.ok) throw new Error(data.message || "Login failed");
 
-    setUser(data);
-    localStorage.setItem("user", JSON.stringify(data));
-    return data;
+    const userData = { ...data, role: data.role || role };
+    setUser(userData);
+    localStorage.setItem("user", JSON.stringify(userData));
+    return userData;
   };
 
   const logout = async () => {

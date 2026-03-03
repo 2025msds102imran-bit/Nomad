@@ -3,6 +3,7 @@ import React from "react";
 const values = [
   {
     tag: "Trust First",
+    accentBar: "bg-slate-900",
     title: "Complete Transparency",
     text: "No hidden fees, no surprises. Every fee is disclosed upfront. Companies see exactly what they'll pay. Recruiters know exactly what they'll earn.",
     icon: (
@@ -13,6 +14,7 @@ const values = [
   },
   {
     tag: "Fair Pricing",
+    accentBar: "bg-linear-to-b from-slate-900 to-blue-900",
     title: "Market-Driven Pricing",
     text: "Recruiters set their own fees based on role complexity and candidate quality. Companies choose the best value. The market decides what's fair—not a corporate algorithm.",
     icon: (
@@ -26,6 +28,7 @@ const values = [
   },
   {
     tag: "Results Only",
+    accentBar: "bg-linear-to-b from-slate-900 to-blue-950",
     title: "Pay for Performance",
     text: "Companies only pay when a candidate actually starts work. Recruiters get paid when they deliver results. Simple, fair, and risk-free for everyone.",
     icon: (
@@ -39,25 +42,25 @@ const values = [
 
 const KeyValues = () => {
   return (
-    <section className="w-full relative bg-linear-to-br from-gray-50 via-white to-gray-50/50 overflow-hidden py-14 px-4">
+    <section className="w-full relative min-h-[701px] bg-linear-to-br from-gray-50 via-white to-gray-50/50 overflow-hidden py-14 px-4 lg:py-[56px]">
       {/* Decorative blurs */}
       <div className="absolute size-[500px] left-0 top-[80px] bg-slate-900/5 rounded-full blur-3xl" />
       <div className="absolute size-[600px] right-[-80px] top-[340px] bg-blue-400/5 rounded-full blur-3xl" />
       {/* Decorative rotated shape */}
-      <div className="absolute w-48 h-32 left-0 bottom-[60px] origin-top-left rotate-45 bg-linear-to-br from-slate-900/10 to-transparent rounded-3xl hidden lg:block" />
+      <div className="absolute w-48 h-32 -left-[2.5px] top-[487px] origin-top-left rotate-45 bg-linear-to-br from-slate-900/10 to-black/0 rounded-3xl hidden lg:block" />
 
       <div className="relative max-w-[1280px] mx-auto flex flex-col items-center">
         {/* Header */}
-        <div className="text-center max-w-[768px]">
-          <div className="inline-flex justify-center items-center px-5 py-2.5 rounded-full bg-slate-900/10 mb-6">
+        <div className="relative w-full max-w-[768px] min-h-48 flex flex-col items-center text-center">
+          <div className="flex justify-center items-center w-32 h-10 rounded-full bg-slate-900/10 mb-6">
             <span className="text-slate-900 text-sm font-medium leading-5">Core Values</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-slate-900 leading-tight md:leading-[79.20px]">
+          <h2 className="w-full max-w-[912px] text-center text-[40px] font-semibold text-slate-900 leading-[79.20px]">
             Why Companies &amp; Recruiters Choose Nomad
           </h2>
 
-          <div className="w-24 h-2 mx-auto mt-4 mb-2 rounded-full" style={{ background: 'linear-gradient(180deg, transparent 0%, #0F172A 50%, transparent 100%)' }} />
+          <div className="w-24 h-2 mt-4 mb-2 rounded-full bg-linear-to-b from-black/0 via-slate-900 to-black/0" />
         </div>
 
         {/* Cards */}
@@ -65,7 +68,7 @@ const KeyValues = () => {
           {values.map((item, i) => (
             <div key={i} className="relative">
               {/* Tag badge (above card) */}
-              <div className="absolute -top-[13px] right-[10px] z-10 w-20 h-6 bg-linear-to-l from-slate-900 to-blue-900 rounded-xl flex items-center justify-center">
+              <div className="absolute -top-[13px] -right-[10px] z-10 w-20 h-6 bg-linear-to-l from-slate-900 to-blue-900 rounded-xl flex items-center justify-center">
                 <span className="text-white text-[10.13px] font-medium leading-3">{item.tag}</span>
               </div>
 
@@ -82,8 +85,6 @@ const KeyValues = () => {
                 {/* Description */}
                 <p className="text-gray-600 text-sm font-normal leading-5">{item.text}</p>
 
-                {/* Bottom accent bar (shows on hover) */}
-                <div className="absolute left-[1.09px] bottom-[4px] w-[calc(100%-2.18px)] h-0 group-hover:h-[5px] rounded-bl-[20.26px] bg-linear-to-b from-slate-900 to-blue-900 transition-all duration-300" />
               </div>
             </div>
           ))}

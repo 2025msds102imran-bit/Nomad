@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const checkIcon = (
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,27 +56,26 @@ const ForRecruiters = () => {
             Set your own fees, negotiate directly with companies, and get paid securely for every successful placement. Build your business on your terms with transparent, fair compensation.
           </p>
 
-          {/* Earnings card */}
-          <div className="w-full relative rounded-3xl shadow-2xl overflow-hidden">
-            <div className="w-full px-8 pt-8 pb-[1.30px] rounded-3xl border-[1.30px] border-slate-900/10" style={{ background: 'linear-gradient(135deg, rgba(37,64,106,0.03) 0%, rgba(239,246,255,0.3) 50%, transparent 100%)' }}>
-              <div className="flex flex-col gap-4 pb-8">
-                <div className="flex items-center gap-3">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21.9903 6.99707L13.494 15.4934L8.4962 10.4956L1.99902 16.9927" stroke="#05DF72" strokeWidth="1.999" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M15.9932 6.99707H21.9906V12.9945" stroke="#05DF72" strokeWidth="1.999" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                  <span className="text-slate-900/80 text-sm font-medium uppercase leading-5 tracking-tight">Average Earnings</span>
-                </div>
-                <span className="text-slate-900 text-4xl font-semibold leading-10">$8,500</span>
-                <span className="text-slate-900/70 text-sm font-normal leading-5">Per successful placement</span>
+          {/* Earnings card - Figma: h-44, from-cyan-900/5 via-blue-50/30 to-black/0 */}
+          <div className="w-full h-44 relative rounded-3xl shadow-2xl overflow-hidden">
+            <div className="absolute inset-0 w-full h-44 px-8 pt-8 pb-[1.30px] rounded-3xl bg-linear-to-br from-cyan-900/20 via-blue-50/1 to-black/10 border-[1.30px] border-slate-900/10" />
+            <div className="absolute left-8 top-8 right-8 bottom-0 flex flex-col justify-start items-start gap-4">
+              <div className="flex items-center gap-3">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21.9903 6.99707L13.494 15.4934L8.4962 10.4956L1.99902 16.9927" stroke="#05DF72" strokeWidth="1.999" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M15.9932 6.99707H21.9906V12.9945" stroke="#05DF72" strokeWidth="1.999" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <span className="text-slate-900/80 text-sm font-medium uppercase leading-5 tracking-tight">Average Earnings</span>
               </div>
+              <span className="text-slate-900 text-4xl font-semibold leading-10">$8,500</span>
+              <span className="text-slate-900/70 text-sm font-normal leading-5">Per successful placement</span>
             </div>
           </div>
 
           {/* CTA button */}
-          <button className="w-64 h-16 bg-linear-to-l from-slate-900 to-blue-900 rounded-2xl overflow-hidden flex items-center justify-center hover:opacity-90 transition">
+          <Link to="/auth/signup" className="w-64 h-16 bg-linear-to-l from-slate-900 to-blue-900 rounded-2xl overflow-hidden flex items-center justify-center hover:opacity-90 transition">
             <span className="text-white text-base font-medium leading-6">Start Recruiting Today</span>
-          </button>
+          </Link>
         </div>
       </div>
     </section>

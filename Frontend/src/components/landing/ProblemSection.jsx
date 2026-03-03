@@ -89,7 +89,7 @@ const VerticalConnector = () => (
 
 const ProblemSection = () => {
   return (
-    <section className="w-full relative shadow-2xl overflow-hidden py-14 sm:py-16 px-4" style={{ background: 'linear-gradient(to left, #0F172A, #334F90)' }}>
+    <section className="relative flex min-h-screen w-full flex-col justify-center overflow-hidden py-14 shadow-2xl sm:py-16 px-4" style={{ background: 'linear-gradient(to left, #0F172A, #334F90)' }}>
       {/* Background decorative elements */}
       <div className="absolute size-[600px] left-0 top-0 bg-blue-400/20 rounded-full blur-3xl" />
       <div className="absolute size-[800px] left-[320px] top-[478px] bg-white/5 rounded-full blur-3xl" />

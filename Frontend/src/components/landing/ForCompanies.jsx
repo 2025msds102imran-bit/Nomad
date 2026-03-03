@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const checkIcon = (
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,13 +42,13 @@ const ForCompanies = () => {
           </p>
 
           {/* Stats card */}
-          <div className="w-full rounded-3xl px-8 pt-8 pb-[1.30px] outline-[1.30px] outline-solid outline-slate-900/10 flex items-start" style={{ background: 'linear-gradient(135deg, rgba(37,64,106,0.03) 0%, rgba(239,246,255,0.3) 50%, transparent 100%)' }}>
-            <div className="flex gap-16 pb-8">
-              <div className="flex flex-col gap-2">
+          <div className="w-full h-32 rounded-3xl px-8 pt-8 pb-[1.30px] bg-linear-to-br from-cyan-900/5 via-blue-50/30 to-black/10 outline outline-[1.30px] outline-offset-[-1.30px] outline-slate-900/10 flex flex-col justify-start items-start">
+            <div className="w-full h-16 relative flex justify-start items-start gap-[23px]">
+              <div className="w-60 h-16 flex flex-col justify-start items-start gap-2">
                 <span className="text-slate-900 text-4xl font-semibold leading-10">30-50%</span>
                 <span className="text-gray-600 text-sm font-normal leading-5">Cost Savings</span>
               </div>
-              <div className="flex flex-col gap-2">
+              <div className="w-60 h-16 flex flex-col justify-start items-start gap-2">
                 <span className="text-slate-900 text-4xl font-semibold leading-10">50%</span>
                 <span className="text-gray-600 text-sm font-normal leading-5">Faster Hiring</span>
               </div>
@@ -55,13 +56,13 @@ const ForCompanies = () => {
           </div>
 
           {/* CTA button */}
-          <button className="w-64 h-16 bg-linear-to-l from-slate-900 to-blue-900 rounded-2xl overflow-hidden flex items-center justify-center gap-2 hover:opacity-90 transition">
+          <Link to="/auth/signup" className="w-64 h-16 bg-linear-to-l from-slate-900 to-blue-900 rounded-2xl overflow-hidden flex items-center justify-center gap-2 hover:opacity-90 transition">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M13.3206 16.6509V3.33014C13.3206 2.88853 13.1451 2.465 12.8329 2.15274C12.5206 1.84047 12.0971 1.66504 11.6555 1.66504H8.32526C7.88364 1.66504 7.46012 1.84047 7.14785 2.15274C6.83559 2.465 6.66016 2.88853 6.66016 3.33014V16.6509" stroke="white" strokeWidth="1.665" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M16.6509 4.99512H3.33014C2.41053 4.99512 1.66504 5.74061 1.66504 6.66022V14.9857C1.66504 15.9053 2.41053 16.6508 3.33014 16.6508H16.6509C17.5705 16.6508 18.316 15.9053 18.316 14.9857V6.66022C18.316 5.74061 17.5705 4.99512 16.6509 4.99512Z" stroke="white" strokeWidth="1.665" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
             <span className="text-white text-base font-medium leading-6">Post Your First Role</span>
-          </button>
+          </Link>
         </div>
 
         {/* Right column — feature list */}

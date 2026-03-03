@@ -11,6 +11,14 @@ import {
   Clock,
   CheckCheck,
   Menu,
+  Coins,
+  Zap,
+  Award,
+  CreditCard,
+  X,
+  CircleAlert,
+  Check,
+  Crown,
 } from "lucide-react";
 
 const contacts = [
@@ -152,6 +160,182 @@ const initialMessages = {
   ],
 };
 
+const CREDIT_PACKAGES = [
+  { id: "50", credits: 50, price: 9.99, bonus: 0, total: 50 },
+  { id: "100", credits: 100, price: 17.99, bonus: 10, total: 110 },
+  { id: "250", credits: 250, price: 39.99, bonus: 50, total: 300, popular: true },
+  { id: "500", credits: 500, price: 69.99, bonus: 100, total: 600 },
+];
+
+const BuyCreditsModal = ({ isOpen, onClose, onSelectPackage }) => {
+  const [selectedId, setSelectedId] = useState(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (e) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  const handleConfirm = () => {
+    if (!selectedId) return;
+    const pkg = CREDIT_PACKAGES.find((p) => p.id === selectedId);
+    onSelectPackage?.(pkg);
+    setSelectedId(null);
+    onClose();
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50" onClick={onClose}>
+      <div
+        className="w-full max-w-[896px] max-h-[90vh] overflow-y-auto scrollbar-hide bg-white rounded-2xl shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="h-24 px-6 flex justify-between items-center bg-gradient-to-b from-slate-900 to-blue-900 rounded-t-2xl">
+          <div className="flex items-center gap-3">
+            <div className="size-12 rounded-2xl bg-white/20 flex items-center justify-center">
+              <Coins size={24} stroke="white" />
+            </div>
+            <div>
+              <h2 className="text-white text-2xl font-bold leading-8">Buy Chat Credits</h2>
+              <p className="text-white/80 text-sm leading-5">Choose a package to continue chatting</p>
+            </div>
+          </div>
+          <button type="button" onClick={onClose} className="size-10 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white/30">
+            <X size={20} stroke="white" />
+          </button>
+        </div>
+
+        {/* Body */}
+        <div className="p-6 flex flex-col gap-6">
+          {/* Alert */}
+          <div className="px-4 pt-4 pb-1 bg-gradient-to-b from-blue-50 to-blue-100 rounded-2xl outline outline-1 outline-offset-[-1px] outline-blue-500 flex gap-3">
+            <CircleAlert size={20} stroke="#3B82F6" className="shrink-0 mt-0.5" />
+            <div>
+              <p className="text-blue-800 text-sm font-semibold leading-5">💬 1 Credit = 1 Message</p>
+              <p className="text-blue-800 text-xs font-normal leading-5 mt-0.5">
+                Each message you send costs 1 credit. Purchase credits now and never miss an important conversation with potential clients!
+              </p>
+            </div>
+          </div>
+
+          {/* Packages */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {CREDIT_PACKAGES.map((pkg) => (
+              <button
+                key={pkg.id}
+                type="button"
+                onClick={() => setSelectedId(pkg.id)}
+                className={`relative w-full min-w-0 h-80 px-5 pt-5 pb-1 rounded-2xl flex flex-col items-center text-left transition-all outline outline-1 outline-offset-[-1px] ${
+                  selectedId === pkg.id
+                    ? "ring-2 ring-cyan-900 ring-offset-2"
+                    : ""
+                } ${
+                  pkg.popular
+                    ? "bg-gradient-to-b from-amber-100 to-amber-200 outline-amber-500"
+                    : "bg-white outline-gray-200"
+                }`}
+              >
+                {pkg.popular && (
+                  <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-24 h-10 px-2 py-1 bg-gradient-to-b from-amber-500 to-amber-600 rounded-full shadow-lg flex items-center justify-center gap-1">
+                    <Crown size={8} stroke="white" className="shrink-0" />
+                    <span className="text-white text-xs font-bold uppercase tracking-tight">Most Popular</span>
+                  </div>
+                )}
+                <div className="flex flex-col items-center gap-1 mt-1">
+                  <Coins size={32} stroke={pkg.popular ? "#D97706" : "#4A90E2"} className="mb-2" />
+                  <span className="text-slate-900 text-3xl font-bold">{pkg.credits}</span>
+                  <span className="text-gray-500 text-xs font-semibold uppercase tracking-tight">Credits</span>
+                </div>
+                {pkg.bonus > 0 ? (
+                  <div className="mt-2 px-3.5 py-2 bg-emerald-100 rounded-[10px] outline outline-1 outline-offset-[-1px] outline-emerald-500 flex items-center gap-1">
+                    <Zap size={12} stroke="#059669" />
+                    <span className="text-emerald-800 text-xs font-bold">+{pkg.bonus} Bonus Credits!</span>
+                  </div>
+                ) : (
+                  <div className="mt-2 min-h-[36px]" />
+                )}
+                <div className="mt-auto pt-3 flex flex-col items-center">
+                  <span className="text-slate-900 text-2xl font-bold">${pkg.price.toFixed(2)}</span>
+                  <span className="text-gray-500 text-xs">one-time payment</span>
+                </div>
+                <div className="w-full pt-3.5 mt-2 border-t border-gray-200">
+                  <p className="text-center text-xs">
+                    <span className="text-gray-500 font-semibold">Total: </span>
+                    <span className="text-slate-900 font-semibold">{pkg.total}</span>
+                    <span className="text-gray-500 font-semibold"> credits</span>
+                  </p>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          {/* Why Buy Credits */}
+          <div className="px-5 pt-5 pb-4 bg-gray-50 rounded-2xl flex flex-col gap-3">
+            <div className="flex items-center gap-2">
+              <Award size={20} stroke="#F59E0B" />
+              <h3 className="text-slate-900 text-sm font-bold leading-5">Why Buy Credits?</h3>
+            </div>
+            <div className="flex flex-wrap gap-6">
+              <div className="flex items-start gap-2 min-w-[200px]">
+                <div className="size-6 rounded-[10px] bg-emerald-100 flex items-center justify-center shrink-0">
+                  <Check size={16} stroke="#10B981" strokeWidth={2} />
+                </div>
+                <div>
+                  <p className="text-slate-900 text-xs font-semibold">Unlimited Access</p>
+                  <p className="text-gray-500 text-xs">Chat with all companies</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-2 min-w-[200px]">
+                <div className="size-6 rounded-[10px] bg-emerald-100 flex items-center justify-center shrink-0">
+                  <Check size={16} stroke="#10B981" strokeWidth={2} />
+                </div>
+                <div>
+                  <p className="text-slate-900 text-xs font-semibold">Never Expire</p>
+                  <p className="text-gray-500 text-xs">Credits last forever</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-2 min-w-[200px]">
+                <div className="size-6 rounded-[10px] bg-emerald-100 flex items-center justify-center shrink-0">
+                  <Check size={16} stroke="#10B981" strokeWidth={2} />
+                </div>
+                <div>
+                  <p className="text-slate-900 text-xs font-semibold">Close More Deals</p>
+                  <p className="text-gray-500 text-xs">Respond instantly</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Buttons */}
+          <div className="flex gap-3">
+            <button
+              type="button"
+              onClick={handleConfirm}
+              disabled={!selectedId}
+              className={`flex-1 h-14 rounded-2xl bg-gradient-to-b from-slate-900 to-blue-900 text-white text-base font-bold flex items-center justify-center gap-2 ${
+                !selectedId ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+            >
+              <CreditCard size={20} stroke="white" /> Select a Package
+            </button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="w-28 h-14 rounded-2xl bg-gray-100 outline outline-1 outline-offset-[-1px] outline-gray-200 text-slate-900 text-base font-semibold"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ChatPage = () => {
   const [activeContact, setActiveContact] = useState(1);
   const [messages, setMessages] = useState(initialMessages);
@@ -159,6 +343,7 @@ const ChatPage = () => {
   const [newMessage, setNewMessage] = useState("");
   const [credits] = useState(0);
   const [showSidebar, setShowSidebar] = useState(false);
+  const [showBuyCreditsModal, setShowBuyCreditsModal] = useState(false);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -216,13 +401,16 @@ const ChatPage = () => {
             </div>
 
             {/* No credits banner */}
-            <div className="pl-4 pr-3 pt-3 pb-3 bg-linear-to-b from-red-100 to-red-200 rounded-[10px] border-l-4 border-red-500 flex items-start gap-2">
+            <button
+              onClick={() => setShowBuyCreditsModal(true)}
+              className="w-full pl-4 pr-3 pt-3 pb-3 bg-linear-to-b from-red-100 to-red-200 rounded-[10px] border-l-4 border-red-500 flex items-start gap-2 text-left hover:opacity-90 transition"
+            >
               <AlertCircle size={16} className="text-red-600 mt-0.5 shrink-0" />
               <div className="flex flex-col gap-1">
                 <span className="text-red-800 text-xs font-semibold leading-4">No Credits Available</span>
                 <span className="text-red-900 text-xs font-normal leading-4">Purchase credits to send messages.</span>
               </div>
-            </div>
+            </button>
 
             {/* Search */}
             <div className="relative mb-3">
@@ -365,7 +553,10 @@ const ChatPage = () => {
                 <Clock size={16} className="text-amber-500" />
                 <span className="text-red-500 text-xs font-bold leading-4">No credits available</span>
               </div>
-              <button className="text-blue-500 text-xs font-semibold leading-4 cursor-pointer hover:underline">
+              <button
+                onClick={() => setShowBuyCreditsModal(true)}
+                className="text-blue-500 text-xs font-semibold leading-4 cursor-pointer hover:underline"
+              >
                 Buy Credits
               </button>
             </div>
@@ -401,6 +592,15 @@ const ChatPage = () => {
           </div>
         </div>
       </div>
+
+      <BuyCreditsModal
+        isOpen={showBuyCreditsModal}
+        onClose={() => setShowBuyCreditsModal(false)}
+        onSelectPackage={(pkg) => {
+          // TODO: API call to purchase credits
+          setShowBuyCreditsModal(false);
+        }}
+      />
     </div>
   );
 };

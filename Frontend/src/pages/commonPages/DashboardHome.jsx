@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   Briefcase,
   Users,
@@ -238,6 +238,8 @@ function CountryBar({ flag, name, open, pct, color, maxOpen }) {
 }
 
 const DashboardHome = () => {
+  const { pathname } = useLocation();
+  const basePath = pathname.startsWith("/recruiter") ? "/recruiter" : "/dashboard";
   const activeJobs = useMemo(() => jobs.filter((j) => j.status === "Active"), []);
   const interviewCandidates = useMemo(() => candidates.filter((c) => c.status === "Interview"), []);
   const hiredCandidates = useMemo(() => candidates.filter((c) => c.status === "Hired"), []);
@@ -574,7 +576,7 @@ const DashboardHome = () => {
               <h3 className="text-base font-semibold text-gray-900 leading-6">Recent Placements</h3>
               <p className="text-xs font-normal text-gray-500 leading-5">Latest successes</p>
             </div>
-            <Link to="/dashboard/placements" className="flex items-center gap-0.5 text-xs font-semibold cursor-pointer text-cyan-900 leading-5">
+            <Link to={`${basePath}/placements`} className="flex items-center gap-0.5 text-xs font-semibold cursor-pointer text-cyan-900 leading-5">
               View All <ChevronRight size={15} />
             </Link>
           </div>

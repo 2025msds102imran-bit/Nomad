@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ArrowLeft, Search, X } from "lucide-react";
 import { placements } from "../../data/dummyData";
 
@@ -11,6 +11,8 @@ const STATUS_STYLES = {
 };
 
 const RecentPlacementsPage = () => {
+  const location = useLocation();
+  const basePath = location.pathname.startsWith("/recruiter") ? "/recruiter" : "/dashboard";
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -38,7 +40,7 @@ const RecentPlacementsPage = () => {
       {/* Header */}
       <div className="flex flex-col gap-1.5">
         <Link
-          to="/dashboard"
+          to={basePath}
           className="inline-flex items-center gap-2 text-cyan-900 text-sm sm:text-base font-medium leading-6 w-fit"
         >
           <ArrowLeft size={20} stroke="#2A4870" />

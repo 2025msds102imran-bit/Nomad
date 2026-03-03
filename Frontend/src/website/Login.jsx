@@ -4,7 +4,7 @@ import { Input, Button } from "../components/ui";
 import { useAuth } from "../context/AuthContext";
 import logo from "../assets/logo.png";
 
-const roles = ["Company", "Recruiter", "Agency"];
+const roles = ["Company", "Recruiter", "Agency", "Admin"];
 
 const LoginPage = () => {
   const [selectedRole, setSelectedRole] = useState("Company");
@@ -16,7 +16,7 @@ const LoginPage = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/dashboard";
+  const from = location.state?.from?.pathname;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +24,13 @@ const LoginPage = () => {
     setIsLoading(true);
     try {
       await login(email, password, selectedRole);
-      navigate(from, { replace: true });
+      const basePath = selectedRole === "Admin"
+        ? "/admin"
+        : selectedRole === "Company"
+          ? "/dashboard"
+          : "/recruiter";
+      const target = (from && from.startsWith(basePath)) ? from : basePath;
+      navigate(target, { replace: true });
     } catch (err) {
       setError(err.message);
     } finally {

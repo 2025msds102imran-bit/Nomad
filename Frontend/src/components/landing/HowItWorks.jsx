@@ -32,18 +32,18 @@ const HowItWorks = () => {
 
       <div className="relative max-w-[1280px] mx-auto flex flex-col items-center">
         {/* Header */}
-        <div className="flex flex-col items-center gap-4 max-w-[683px] text-center">
-          <div className="inline-flex justify-center items-center px-6 py-2.5 bg-slate-900/10 rounded-full shadow-[0px_3.64px_5.46px_-3.64px_rgba(0,0,0,0.10),0px_9.1px_13.65px_-2.73px_rgba(0,0,0,0.10)]">
+        <div className="flex flex-col items-center gap-4 w-full max-w-[683px] text-center">
+          <div className="relative flex justify-center items-center w-36 h-10 bg-slate-900/10 rounded-full shadow-[0px_3.64px_5.46px_-3.64px_rgba(0,0,0,0.10),0px_9.1px_13.65px_-2.73px_rgba(0,0,0,0.10)]">
             <span className="text-slate-900 text-xs font-medium uppercase leading-5 tracking-wide">Our Process</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-slate-900 leading-tight md:leading-[79.20px]">
+          <h2 className="w-full text-5xl font-semibold text-slate-900 leading-[79.20px]">
             How Nomad Works
           </h2>
 
-          <div className="w-32 h-2 rounded-2xl bg-linear-to-l from-slate-900 to-blue-900" />
+          <div className="w-32 h-2 relative rounded-2xl bg-linear-to-l from-slate-900 to-blue-900" />
 
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 font-normal leading-relaxed md:leading-10">
+          <p className="w-full text-2xl text-gray-700 font-normal leading-10">
             A simple, transparent process that puts both companies and recruiters in control.
           </p>
         </div>
@@ -58,11 +58,7 @@ const HowItWorks = () => {
             {steps.map((step) => (
               <div
                 key={step.num}
-                className={`group relative bg-white rounded-3xl overflow-hidden flex flex-col p-8 min-h-[320px] transition-all duration-300 ${
-                  step.active
-                    ? "shadow-[0px_23.5px_47px_-11.3px_rgba(0,0,0,0.25)] outline-[1.22px] outline-solid outline-slate-900/30"
-                    : "outline-[1.22px] outline-solid outline-gray-200 hover:shadow-[0px_23.5px_47px_-11.3px_rgba(0,0,0,0.25)] hover:outline-slate-900/30"
-                }`}
+                className="group relative bg-white rounded-3xl overflow-hidden flex flex-col p-8 min-h-[320px] transition-all duration-300 outline-[1.22px] outline-solid outline-gray-200 hover:shadow-[0px_23.5px_47px_-11.3px_rgba(0,0,0,0.25)] hover:outline-slate-900/30"
               >
                 {/* Decorative bottom-right blur */}
                 <div className="absolute size-32 right-[-20px] bottom-[-20px] bg-linear-to-br from-blue-50/40 to-transparent rounded-full blur-2xl" />
@@ -70,19 +66,15 @@ const HowItWorks = () => {
                 {/* Number + decorative blur */}
                 <div className="relative w-52 h-20 mb-4">
                   {/* SVG blur behind number */}
-                  <div className={`absolute -left-3 -top-3 size-[90px] rounded-[15px] blur-[22px] ${step.active ? "opacity-30" : "opacity-15"}`} style={{ background: 'linear-gradient(180deg, #25406A, #4A90E2)' }} />
+                  <div className="absolute -left-3 -top-3 size-[90px] rounded-[15px] blur-[22px] opacity-15" style={{ background: 'linear-gradient(180deg, #25406A, #4A90E2)' }} />
 
                   {/* Number badge */}
-                  <div className={`relative bg-linear-to-l from-slate-900 to-blue-900 rounded-2xl flex items-center justify-center ${
-                    step.active
-                      ? "size-20 -ml-[6px] -mt-[6px] origin-top-left rotate-6"
-                      : "size-16"
-                  }`}>
+                  <div className="relative size-16 bg-linear-to-l from-slate-900 to-blue-900 rounded-2xl flex items-center justify-center transition-transform duration-300 origin-top-left group-hover:rotate-6">
                     <span className="text-white text-2xl font-bold leading-8">{step.num}</span>
                   </div>
 
                   {/* Gradient underline */}
-                  <div className={`w-20 h-1.5 bg-linear-to-l from-slate-900 to-blue-900 rounded-2xl ${step.active ? "mt-2" : "mt-3"}`} />
+                  <div className="w-20 h-1.5 bg-linear-to-l from-slate-900 to-blue-900 rounded-2xl mt-3" />
                 </div>
 
                 {/* Content */}

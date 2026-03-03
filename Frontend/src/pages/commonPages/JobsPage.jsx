@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Search, X, Star, MapPin, Clock, Eye, Mail, DollarSign, Briefcase, MessageSquare } from "lucide-react";
 import { vacancyCards, jobs, candidates } from "../../data/dummyData";
 import { StatCard, DropdownFilter, StarRating } from "../../global";
@@ -34,7 +34,7 @@ const FilterStarButton = () => (
   </button>
 );
 
-const VacancyCard = ({ card }) => (
+const VacancyCard = ({ card, basePath }) => (
   <div className="w-full h-[480px] bg-white rounded-2xl outline-1 outline-gray-100 px-6 pt-6 flex flex-col">
     <div className="flex items-center gap-1.5 mb-4">
       <div className={`w-14 h-14 rounded-full bg-linear-to-br ${card.avatarGradient} flex items-center justify-center text-white text-lg font-bold border border-gray-200`}>
@@ -67,7 +67,7 @@ const VacancyCard = ({ card }) => (
 
     <div className="flex flex-col gap-2 mt-3">
       <div className="flex gap-[11px]">
-        <Link to={`/dashboard/company/${card.id}`} className="flex-1 h-10 bg-cyan-900 rounded-[10px] flex justify-center items-center gap-1 text-white text-sm font-medium">
+        <Link to={`${basePath}/company/${card.id}`} className="flex-1 h-10 bg-cyan-900 rounded-[10px] flex justify-center items-center gap-1 text-white text-sm font-medium">
           <Eye size={16} stroke="white" /> View Profile
         </Link>
         <button className="flex-1 h-10 bg-white rounded-[10px] outline-1 outline-gray-200 flex justify-center items-center gap-1 text-slate-900 text-sm font-medium">
@@ -90,6 +90,8 @@ const VacancyCard = ({ card }) => (
 );
 
 const JobsPage = () => {
+  const { pathname } = useLocation();
+  const basePath = pathname.startsWith("/recruiter") ? "/recruiter" : "/dashboard";
   const [searchQuery, setSearchQuery] = useState("");
   const [activeType, setActiveType] = useState("Full-Time");
   const [industry, setIndustry] = useState("Technology");
@@ -225,7 +227,7 @@ const JobsPage = () => {
       {/* Job Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
         {filteredCards.map((card) => (
-          <VacancyCard key={card.id} card={card} />
+          <VacancyCard key={card.id} card={card} basePath={basePath} />
         ))}
         {filteredCards.length === 0 && (
           <div className="col-span-full text-center text-gray-400 text-sm py-12">
