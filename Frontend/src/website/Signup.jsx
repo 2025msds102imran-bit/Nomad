@@ -44,7 +44,7 @@ const SignupPage = () => {
 
   return (
     <div className="w-full">
-      <div className="bg-white rounded-[20px] px-6 sm:px-8 py-6 flex flex-col gap-6 sm:gap-7 shadow-[0px_3.31px_4.97px_-3.31px_rgba(0,0,0,0.10),0px_8.28px_12.42px_-2.48px_rgba(0,0,0,0.10)] outline-[1.07px] outline-gray-200">
+      <div className="bg-white rounded-[20px] px-6 sm:px-8 py-6 flex flex-col gap-4 sm:gap-7 shadow-[0px_3.31px_4.97px_-3.31px_rgba(0,0,0,0.10),0px_8.28px_12.42px_-2.48px_rgba(0,0,0,0.10)] outline-[1.07px] outline-gray-200">
         <div className="flex flex-col items-center gap-2 text-center">
           <h1 className="text-2xl font-semibold leading-8 text-slate-900">
           Welcome to Nomad Recruitment
@@ -58,7 +58,7 @@ const SignupPage = () => {
           </p>
         </div>
 
-        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
           {error && (
             <div className="px-4 py-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
               {error}
