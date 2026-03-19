@@ -43,13 +43,17 @@ export const AuthProvider = ({ children }) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({ email, password, ...(role && { role }) }),
+      // Do NOT send role to backend – many APIs don't accept it
+      body: JSON.stringify({ email, password }),
     });
 
     const data = await res.json();
     if (!res.ok) throw new Error(data.message || "Login failed");
 
-    const userData = { ...data, role: data.role || role || "Company" };
+    // Prefer explicit role hint (e.g. "Admin") when provided,
+    // otherwise fall back to API role, then default to Company.
+    const finalRole = role || data.role || "Company";
+    const userData = { ...data, role: finalRole };
     setUser(userData);
     localStorage.setItem("user", JSON.stringify(userData));
     return userData;

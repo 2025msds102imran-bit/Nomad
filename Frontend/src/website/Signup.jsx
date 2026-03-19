@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Input, Select, Button } from "../components/ui";
 import { useAuth } from "../context/AuthContext";
-import logo from "../assets/logo.png";
+import { getDashboardPath } from "../utils/roleUtils";
+import logo from "../assets/images/logo.png";
 
 const roles = ["Company", "Recruiter", "Agency"];
 
@@ -33,8 +34,7 @@ const SignupPage = () => {
     try {
       const user = await register({ companyName, email, password, contactNumber, location, registrationNo, role: selectedRole });
       const role = user?.role || selectedRole;
-      const basePath = role === "Company" ? "/dashboard" : "/recruiter";
-      navigate(basePath, { replace: true });
+      navigate(getDashboardPath(role), { replace: true });
     } catch (err) {
       setError(err.message);
     } finally {

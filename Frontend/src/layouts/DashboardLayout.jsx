@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import { NotificationProvider, useNotifications } from '../context/NotificationContext';
 import { useAuth } from '../context/AuthContext';
 import {
@@ -21,7 +21,7 @@ import {
   Star,
   Languages,
 } from 'lucide-react';
-import logo from '../assets/logo.png';
+import logo from '../assets/images/logo.png';
 import { currentUser } from '../data/dummyData';
 
 const sidebarLinks = [
@@ -77,6 +77,11 @@ const DashboardLayoutInner = () => {
   }, []);
 
   const isFullWidth = location.pathname === '/dashboard/chat';
+
+  const role = user?.role || user?.user?.role || 'Company';
+  if (role !== 'Company') {
+    return <Navigate to="/recruiter" replace />;
+  }
 
   const pageTitles = {
     '/dashboard': { title: `Welcome back, ${user?.companyName || 'User'}`, subtitle: "Here's your recruitment performance overview.", rating: currentUser.rating },

@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { getDashboardPath } from "../utils/roleUtils";
 
 const RoleProtectedRoute = ({ children, allowedRoles, redirectTo }) => {
   const { user, loading } = useAuth();
@@ -21,7 +22,8 @@ const RoleProtectedRoute = ({ children, allowedRoles, redirectTo }) => {
   const hasAccess = !allowedRoles || allowedRoles.includes(role);
 
   if (!hasAccess) {
-    return <Navigate to={redirectTo || "/"} state={{ from: location }} replace />;
+    const target = getDashboardPath(role);
+    return <Navigate to={redirectTo ?? target} state={{ from: location }} replace />;
   }
 
   return children;

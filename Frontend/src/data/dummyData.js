@@ -84,6 +84,69 @@ export const recentActivity = [
   { id: 8, action: "Payment held in escrow", detail: "$9,500 for DevOps Engineer placement", time: "5 days ago" },
 ];
 
+export const recruiterEmployees = [
+  { id: 1, type: "RecruiterCompany", recruiterName: "Uplers", employeeName: "Chirag", createdDate: "11/11/2025 4:44:35 AM", status: "Active" },
+  { id: 2, type: "RecruiterCompany", recruiterName: "Uplers", employeeName: "Suraj", createdDate: "11/11/2025 4:44:35 AM", status: "Active" },
+  { id: 3, type: "Recruiter", recruiterName: "Recruiter Company CA", employeeName: "Tejas", createdDate: "11/11/2025 4:44:35 AM", status: "Active" },
+  { id: 4, type: "Recruiter", recruiterName: "Recruiter Company CA", employeeName: "Gaurav", createdDate: "11/11/2025 4:44:35 AM", status: "Active" },
+  { id: 5, type: "RecruiterCompany", recruiterName: "Uplers", employeeName: "Ayer", createdDate: "11/11/2025 4:44:35 AM", status: "Active" },
+  { id: 6, type: "Recruiter", recruiterName: "Synergy Resource Solutions", employeeName: "Tejas", createdDate: "11/11/2025 4:44:35 AM", status: "Active" },
+  { id: 7, type: "RecruiterCompany", recruiterName: "Synergy Resource Solutions", employeeName: "Gaurav", createdDate: "11/11/2025 4:44:35 AM", status: "Active" },
+  { id: 8, type: "RecruiterCompany", recruiterName: "TechRecruit Ltd", employeeName: "Sarah Mitchell", createdDate: "10/15/2025 2:30:00 PM", status: "Active" },
+  { id: 9, type: "Recruiter", recruiterName: "DesignHire Co", employeeName: "James Chen", createdDate: "10/12/2025 9:15:00 AM", status: "Active" },
+  { id: 10, type: "RecruiterCompany", recruiterName: "CloudHire", employeeName: "Maria Garcia", createdDate: "10/08/2025 4:20:00 PM", status: "Active" },
+];
+
+export const chatContacts = [
+  { id: 1, name: "Sarah Johnson", role: "HR Manager at TechCorp", lastMessage: "Thanks for the candidate profile!", time: "2 mins ago", unread: 2, online: true },
+  { id: 2, name: "Michael Chen", role: "Recruiter at Elite Agency", lastMessage: "When can we schedule the interview?", time: "15 mins ago", unread: 0, online: false },
+  { id: 3, name: "Emma Wilson", role: "Hiring Lead at StartupX", lastMessage: "Perfect, I will review the CVs", time: "1 hour ago", unread: 0, online: false },
+  { id: 4, name: "David Martinez", role: "Talent Acquisition", lastMessage: "Can you send more candidates?", time: "3 hours ago", unread: 1, online: false },
+  { id: 5, name: "Lisa Anderson", role: "Company Representative", lastMessage: "Great! Let's move forward", time: "Yesterday", unread: 0, online: false },
+];
+
+export const chatMessages = {
+  1: [
+    { id: 1, text: "Hi! I reviewed the candidate profile you sent", time: "10:30 AM", isMe: false },
+    { id: 2, text: "Great! What do you think?", time: "10:32 AM", isMe: true },
+    { id: 3, text: "Very impressive background. Can we schedule an interview?", time: "10:35 AM", isMe: false },
+    { id: 4, text: "Absolutely! How about next Tuesday at 2 PM?", time: "10:36 AM", isMe: true },
+    { id: 5, text: "Thanks for the candidate profile!", time: "10:38 AM", isMe: false },
+  ],
+  2: [
+    { id: 1, text: "When can we schedule the interview?", time: "10:15 AM", isMe: false },
+    { id: 2, text: "I'll check availability and get back to you shortly.", time: "10:20 AM", isMe: true },
+  ],
+  3: [
+    { id: 1, text: "Perfect, I will review the CVs", time: "9:30 AM", isMe: false },
+    { id: 2, text: "Thanks! Let me know if you need any additional info.", time: "9:32 AM", isMe: true },
+  ],
+  4: [
+    { id: 1, text: "Can you send more candidates?", time: "8:00 AM", isMe: false },
+    { id: 2, text: "Sure, I'll prepare a shortlist and send it over today.", time: "8:15 AM", isMe: true },
+  ],
+  5: [
+    { id: 1, text: "Great! Let's move forward", time: "Yesterday", isMe: false },
+    { id: 2, text: "Excellent. I'll send the paperwork for next steps.", time: "Yesterday", isMe: true },
+  ],
+};
+
+export const pages = [
+  { id: 1, name: "PrivacyAndPolicy", description: "Privacy policy and data handling information", status: "Active", createdDate: "11/11/2025 4:44:35 AM" },
+  { id: 2, name: "TermsAndCondition", description: "Terms and conditions for platform usage", status: "Active", createdDate: "11/11/2025 4:44:35 AM" },
+  { id: 3, name: "About", description: "About us and company information", status: "Active", createdDate: "11/10/2025 3:20:00 PM" },
+];
+
+export const subscriptionPlans = [
+  { id: 1, name: "Premium", type: "RecruiterCompany", description: "Unlimited connections, Unlimited placements", price: "179.00€", status: "Active", createdDate: "11/11/2025 4:44:35 AM" },
+  { id: 2, name: "Pro", type: "RecruiterCompany", description: "Connect with up to 10 profiles, Priority support", price: "179.00€", status: "Active", createdDate: "11/11/2025 4:44:35 AM" },
+  { id: 3, name: "Premium", type: "Recruiter", description: "Unlimited connections, Unlimited placements", price: "179.00€", status: "Active", createdDate: "11/11/2025 4:44:35 AM" },
+  { id: 4, name: "Pro", type: "Recruiter", description: "Connect with up to 10 profiles, Priority support", price: "179.00€", status: "Active", createdDate: "11/11/2025 4:44:35 AM" },
+  { id: 5, name: "Premium", type: "RecruiterCompany", description: "Unlimited connections, Unlimited placements", price: "179.00€", status: "Active", createdDate: "11/11/2025 4:44:35 AM" },
+  { id: 6, name: "Basic", type: "RecruiterCompany", description: "Connect with up to 5 profiles, Post jobs", price: "179.00€", status: "Active", createdDate: "11/11/2025 4:44:35 AM" },
+  { id: 7, name: "Basic", type: "Recruiter", description: "Connect with up to 5 profiles, Post jobs", price: "179.00€", status: "Active", createdDate: "11/11/2025 4:44:35 AM" },
+];
+
 export const placements = [
   { id: 1, candidateName: "Sarah Johnson", role: "Senior Developer", company: "TechCorp", salary: "$80K", time: "2h ago", status: "In Progress" },
   { id: 2, candidateName: "Sarah", role: "Data Scientist", company: "AI Labs", salary: "$80K", time: "2h ago", status: "Completed" },

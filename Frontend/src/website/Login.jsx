@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Input, Button } from "../components/ui";
 import { useAuth } from "../context/AuthContext";
-import logo from "../assets/logo.png";
+import { getDashboardPath } from "../utils/roleUtils";
+import logo from "../assets/images/logo.png";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -14,19 +15,16 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname;
+  const roleHint = location.state?.role;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
     try {
-      const user = await login(email, password);
+      const user = await login(email, password, roleHint);
       const role = user?.role || "Company";
-      const basePath = role === "Admin"
-        ? "/admin"
-        : role === "Company"
-          ? "/dashboard"
-          : "/recruiter";
+      const basePath = getDashboardPath(role);
       const target = (from && from.startsWith(basePath)) ? from : basePath;
       navigate(target, { replace: true });
     } catch (err) {
@@ -52,6 +50,12 @@ const LoginPage = () => {
             Welcome back! Please enter your details.
           </p>
         </div>
+
+        {roleHint === "Admin" && (
+          <div className="mb-2 inline-flex items-center justify-center rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-600">
+            You are logging in as <span className="ml-1 font-semibold">Admin</span>
+          </div>
+        )}
 
         <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
           {error && (
@@ -114,6 +118,16 @@ const LoginPage = () => {
             className="text-base font-medium text-cyan-900 hover:underline ml-1"
           >
             Sign up
+          </Link>
+        </div>
+
+        <div className="mt-2 flex justify-end">
+          <Link
+            to="/auth/login"
+            state={{ role: "Admin" }}
+            className="text-xs text-gray-400 hover:text-cyan-900 hover:underline"
+          >
+            Login as Admin
           </Link>
         </div>
       </div>

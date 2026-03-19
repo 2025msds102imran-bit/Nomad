@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
-import logo from "../assets/logo.png";
+import logo from "../assets/images/logo.png";
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { getDashboardPath } from '../utils/roleUtils';
 
 const Navbar = () => {
   const [langOpen, setLangOpen] = useState(false);
@@ -96,11 +97,7 @@ const Navbar = () => {
           {user ? (
             <div className="flex items-center gap-3">
               <button
-                onClick={() => {
-                  const role = user?.role || user?.user?.role || 'Company';
-                  const path = role === 'Admin' ? '/admin' : role === 'Company' ? '/dashboard' : '/recruiter';
-                  navigate(path);
-                }}
+                onClick={() => navigate(getDashboardPath(user?.role || user?.user?.role))}
                 className="h-11 px-5 bg-white/95 rounded-2xl flex items-center justify-center hover:bg-white transition"
               >
                 <span className="text-slate-900 text-sm font-medium leading-5">Dashboard</span>
@@ -189,9 +186,7 @@ const Navbar = () => {
               <div className="mt-6 flex flex-col gap-3">
                 <button
                   onClick={() => {
-                  const role = user?.role || user?.user?.role || 'Company';
-                  const path = role === 'Admin' ? '/admin' : role === 'Company' ? '/dashboard' : '/recruiter';
-                  navigate(path);
+                  navigate(getDashboardPath(user?.role || user?.user?.role));
                   setMenuOpen(false);
                 }}
                   className="w-full h-11 bg-white/95 rounded-2xl flex items-center justify-center"
